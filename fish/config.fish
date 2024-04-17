@@ -31,15 +31,6 @@ set -gx PATH node_modules/.bin $PATH
 set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
-switch (uname)
-    case Darwin
-        source (dirname (status --current-filename))/config-osx.fish
-    case Linux
-        source (dirname (status --current-filename))/config-linux.fish
-    case '*'
-        source (dirname (status --current-filename))/config-windows.fish
-end
-
 set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
     source $LOCAL_CONFIG
