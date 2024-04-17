@@ -17,6 +17,7 @@ $nodejs\
 $nim\
 $rust\
 $scala\
+$cmd_duration\
 [](fg:#374D58 bg:#000000)\
 """
 
@@ -135,3 +136,9 @@ disabled = false
 time_format = "%R"             # Hour:Minute Format
 style = "bg:#33658A"
 format = '[ ♥ $time ]($style)'
+
+[cmd_duration]
+min_time = 500
+style = "bg:#584D37"
+#format = 'took [$duration](bold yellow)($style)'
+format = '[took $duration]($style)'
