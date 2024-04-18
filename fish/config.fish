@@ -31,8 +31,8 @@ set -gx PATH node_modules/.bin $PATH
 set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
-set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
-if test -f $LOCAL_CONFIG
-    source $LOCAL_CONFIG
-end
+# set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+# if test -f $LOCAL_CONFIG
+#     source $LOCAL_CONFIG
+# end
 starship init fish | source
