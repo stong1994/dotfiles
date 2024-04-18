@@ -1,10 +1,14 @@
+# Get editor completions based on the config schema
+#"$schema" = 'https://starship.rs/config-schema.json'
 # https://starship.rs/presets/pastel-powerline#prerequisites
 format = """
+$sudo\
 $directory\
 [](fg:#034D4E bg:#000000)\
 $git_branch\
 $git_status\
 [](fg:#684233 bg:#000000)\
+$fill\
 $c\
 $elixir\
 $elm\
@@ -18,12 +22,24 @@ $nim\
 $rust\
 $scala\
 $cmd_duration\
-[](fg:#374D58 bg:#000000)\
+$line_break\
+$character\
 """
 
-# Disable the blank line at the start of the prompt
-# add_newline = false
+# Enable the blank line at the start of the prompt
+add_newline = true
+[line_break]
+disabled = false
 
+[sudo]
+disabled = false
+symbol = "🧙"
+format = '[$symbol ]($style)'
+style = "bg:#C2B4DF"
+
+[character]
+success_symbol = '[❯](bold #C2B4DF) '
+error_symbol = '[❯](bold purple) '
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
 [username]
@@ -33,6 +49,8 @@ style_root = "bg:#9A348E"
 format = '[$user ]($style)'
 disabled = false
 
+[fill]
+symbol = " "
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
@@ -42,8 +60,9 @@ disabled = true      # Disabled by default
 [directory]
 style = "bg:#034D4E"
 format = "[ $path ]($style)"
-truncation_length = 3
-# truncation_symbol = "…/"
+truncation_length = 8
+truncation_symbol = ""
+fish_style_pwd_dir_length = 0
 
 # Here is how you can shorten some long paths by text replacement
 # similar to mapped_locations in Oh My Posh:
@@ -139,6 +158,6 @@ format = '[ ♥ $time ]($style)'
 
 [cmd_duration]
 min_time = 500
-style = "bg:#584D37"
+style = "bg:#584D37 inverted"
 #format = 'took [$duration](bold yellow)($style)'
-format = '[took $duration]($style)'
+format = '[⏱️$duration]($style)'
