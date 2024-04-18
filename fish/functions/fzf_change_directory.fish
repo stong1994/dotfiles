@@ -1,7 +1,7 @@
 function _fzf_change_directory
     fzf | perl -pe 's/([ ()])/\\\\$1/g' | read foo
     if [ $foo ]
-        builtin cd $foo
+        cd $foo
         commandline -r ''
         commandline -f repaint
     else
@@ -12,29 +12,8 @@ end
 function fzf_change_directory
     begin
         echo $HOME/.config
-        find $(ghq root --all) -maxdepth 4 -type d -name .git | sed 's/\/\.git//'
+        # todo we use --hidden because we need search the directory with '.git', but with --hidden, we will search with all directory with prefix '.', wait fd to optimize it
+        ghq root --all | xargs -I {} fd --type d --max-depth 2 --hidden .git {} | sed 's/\/\.git//'
         ls -ad */ | perl -pe "s#^#$PWD/#" | grep -v \.git
-        # ls -ad $HOME/Developments/*/* | grep -v \.git
     end | sed -e 's/\/$//' | awk '!a[$0]++' | _fzf_change_directory $argv
 end
-
-# function _fzf_change_directory
-#     local foo
-#     fzf | perl -pe 's/([ ()])/\\\\$1/g' | read -r foo
-#     if [ "$foo" ]; then
-#         builtin cd "$foo"
-#         commandline -r ''
-#         commandline -f repaint
-#     else
-#         commandline ''
-#     end
-# end
-#
-# function fzf_change_directory
-#     begin
-#         echo "$HOME/.config"
-#         ghq root --all | xargs -I{} find {} -maxdepth 4 -type d -name .git | sed 's/\/\.git//'
-#         ls -ad */ | perl -pe "s#^#$PWD/#" | grep -v '/\.git$'
-#         # ls -ad "$HOME/Developments/"*/* | grep -v '/\.git$'
-#     end | sed 's/\/$//' | awk '!a[$0]++' | _fzf_change_directory $argv
-# end
