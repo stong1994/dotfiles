@@ -1,3 +1,4 @@
+
 function _fzf_change_directory
     fzf | perl -pe 's/([ ()])/\\\\$1/g' | read foo
     if [ $foo ]
