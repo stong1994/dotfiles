@@ -12,7 +12,10 @@ return {
       },
     },
   },
-
+  -- {
+  --   "nvim-telescope/telescope-file-browser.nvim",
+  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  -- },
   {
     "echasnovski/mini.hipatterns",
     event = "BufReadPre",
@@ -89,7 +92,7 @@ return {
         desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
       },
       {
-        "\\\\",
+        ";b",
         function()
           local builtin = require("telescope.builtin")
           builtin.buffers()
