@@ -4,11 +4,11 @@
 format = """
 $sudo\
 $directory\
-[](fg:#034D4E bg:#000000)\
+[](fg:#034D4E)\
+$fill\
+[](fg:#825240)\
 $git_branch\
 $git_status\
-[](fg:#684233 bg:#000000)\
-$fill\
 $c\
 $elixir\
 $elm\
