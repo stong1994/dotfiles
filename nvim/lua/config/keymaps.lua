@@ -7,7 +7,14 @@ discipline.cowboy()
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
+-- To resolve the conflict with Tab and Ctrl-i
+keymap.set("n", "<Tab>", "<cmd>tabnext<CR>", opts)
+keymap.set("n", "<C-i>", "<C-i>", opts)
+
 vim.keymap.set("n", "<C-p>", "m`o<ESC>p>`", opts)
+
+vim.keymap.set("n", "]b", [[<cmd>bnext<cr>]])
+vim.keymap.set("n", "[b", [[<cmd>bprevious<cr>]])
 
 vim.keymap.set("n", "J", "5j")
 vim.keymap.set("n", "K", "5k", { noremap = true })
@@ -17,8 +24,8 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- New Tab
 keymap.set("n", "te", ":tabedit<Return>", opts)
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+keymap.set("n", "<tab-n>", ":tabnext<Return>", opts)
+keymap.set("n", "<tab-p>", ":tabprev<Return>", opts)
 
 -- Resize window
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
