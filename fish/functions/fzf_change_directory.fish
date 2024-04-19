@@ -14,7 +14,7 @@ function fzf_change_directory
     begin
         echo $HOME/.config
         # todo we use --hidden because we need search the directory with '.git', but with --hidden, we will search with all directory with prefix '.', wait fd to optimize it
-        ghq root --all | xargs -I {} fd --type d --max-depth 2 --hidden .git {} | sed 's/\/\.git//'
+        ghq root --all | xargs -I {} fd --type d --max-depth 4 --hidden .git {} | sed 's/\/\.git//'
         ls -ad */ | perl -pe "s#^#$PWD/#" | grep -v \.git
     end | sed -e 's/\/$//' | awk '!a[$0]++' | _fzf_change_directory $argv
 end
