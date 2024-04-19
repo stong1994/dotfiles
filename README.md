@@ -104,6 +104,21 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | <leader>H     | add file to harpoon                                                          | ThePrimeagen/harpoon |
 | <leader>h     | get files from harpoon                                                       | ThePrimeagen/harpoon |
 | <leader>{num} | choose the file from harpoon                                                 | ThePrimeagen/harpoon |
+| te            | create a new tab (save with :w filename)                                     |                      |
+| <tab>         | next tab                                                                     |                      |
+
+## kitty
+
+Kitty is a fast GPU-based terminal emulator.
+You can change the color scheme with command:
+
+```
+kitten themes
+```
+
+| Shortcut    | Description                     | implementation |
+| ----------- | :------------------------------ | -------------- |
+| command-{i} | move to the tab that index is i |                |
 
 ## Base Tool
 
