@@ -141,6 +141,14 @@ return {
         desc = "LSP Goto Defination by telescope",
       },
       {
+        "gi",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.lsp_implementations({})
+        end,
+        desc = "LSP Goto Implementations by telescope",
+      },
+      {
         "gr",
         function()
           local builtin = require("telescope.builtin")
