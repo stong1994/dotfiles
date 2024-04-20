@@ -87,6 +87,7 @@ return {
           local builtin = require("telescope.builtin")
           builtin.live_grep({
             additional_args = { "--hidden" },
+            use_regex = true,
           })
         end,
         desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
@@ -130,6 +131,24 @@ return {
           builtin.treesitter()
         end,
         desc = "Lists Function names, variables, from Treesitter",
+      },
+      {
+        "gd",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.lsp_definitions({})
+        end,
+        desc = "LSP Goto Defination by telescope",
+      },
+      {
+        "gr",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.lsp_references({
+            include_declaration = false, -- TODO: not work
+          })
+        end,
+        desc = "Lsp Goto Reference by telescope",
       },
       {
         "sf",

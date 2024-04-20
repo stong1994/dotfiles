@@ -115,6 +115,7 @@ return {
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-cmdline" },
       { "saadparwaiz1/cmp_luasnip" },
+      { "telescope.nvim" },
     },
 
     init = function()
@@ -125,16 +126,17 @@ return {
 
     config = function()
       local lsp = require("lsp-zero")
+      local telescope_builtin = require("telescope.builtin")
 
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
 
-        vim.keymap.set("n", "gr", function()
-          vim.lsp.buf.references()
-        end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Reference" }))
-        vim.keymap.set("n", "gd", function()
-          vim.lsp.buf.definition()
-        end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
+        -- vim.keymap.set("n", "gr", function()
+        --   vim.lsp.buf.references()
+        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Reference" }))
+        -- vim.keymap.set("n", "gd", function()
+        --   vim.lsp.buf.definition()
+        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
         vim.keymap.set("n", "gk", function()
           vim.lsp.buf.hover()
         end, vim.tbl_deep_extend("force", opts, { desc = "LSP Hover" }))
