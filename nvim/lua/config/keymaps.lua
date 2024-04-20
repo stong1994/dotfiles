@@ -8,16 +8,20 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
 -- To resolve the conflict with Tab and Ctrl-i
-keymap.set("n", "<Tab>", "<cmd>tabnext<CR>", opts)
+keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts)
 keymap.set("n", "<C-i>", "<C-i>", opts)
+keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
 
+-- Copy content to the next line
 vim.keymap.set("n", "<C-p>", "m`o<ESC>p>`", opts)
 
+-- Buffer switch
 vim.keymap.set("n", "]b", [[<cmd>bnext<cr>]])
 vim.keymap.set("n", "[b", [[<cmd>bprevious<cr>]])
 
-vim.keymap.set("n", "J", "5j")
-vim.keymap.set("n", "K", "5k", { noremap = true })
+-- Quick Move
+vim.keymap.set("n", "J", "10j")
+vim.keymap.set("n", "K", "10k", { noremap = true })
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
