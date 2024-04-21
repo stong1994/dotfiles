@@ -1,4 +1,11 @@
 return {
+  -- color preview
+  {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
   -- color schema
   {
     "craftzdog/solarized-osaka.nvim",
@@ -34,7 +41,7 @@ return {
   {
     "rcarriga/nvim-notify",
     opts = {
-      timeout = 5000,
+      timeout = 3000,
     },
   },
   -- statusline
@@ -48,6 +55,7 @@ return {
     },
   },
   -- filename
+  -- use this when bufferline.mode = tabs
   {
     "b0o/incline.nvim",
     dependencies = { "craftzdog/solarized-osaka.nvim" },
@@ -68,7 +76,7 @@ return {
         },
         render = function(props)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-          if vim.bo[props.buf].modifiable then
+          if vim.bo[props.buf].modified then
             filename = "[+]" .. filename
           end
 
@@ -78,39 +86,26 @@ return {
       })
     end,
   },
+  -- statusline
+  -- {
+  --   "beauwilliams/statusline.lua",
+  --   config = function()
+  --     vim.opt.hidden = true
+  --     local statusline = require("statusline")
+  --     statusline.statusline_init()
+  --     statusline.tabline = true
+  --     statusline.lsp_diagnostics = true
+  --   end,
+  -- },
   -- bufferline
   {
     "akinsho/bufferline.nvim",
-    keys = {
-      {
-        "<Tab>",
-        "<Cmd>BufferLineCycleNext<CR>",
-        desc = "Next tab",
-      },
-      {
-        "<S-Tab>",
-        "<Cmd>VufferLineCyclePrev<CR>",
-        desc = "Prv tab",
-      },
-    },
     opts = {
       options = {
         mode = "tabs",
-        show_buffer_close_icons = false,
-        show_close_icon = false,
       },
     },
   },
-  -- animations
-  -- {
-  --   "echasnovski/mini.animate",
-  --   event = "VeryLazy",
-  --   opts = function(_, opts)
-  --     opts.scroll = {
-  --       enable = false,
-  --     }
-  --   end,
-  -- },
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
