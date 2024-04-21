@@ -53,6 +53,10 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 
 | Shortcut     | Description                                               | implementation            |
 | ------------ | :-------------------------------------------------------- | ------------------------- |
+| ctrl-o       | go to older position in jump list                         | :h jumplist               |
+| ctrl-i       | go to newer position in jump list                         | :h jumplist               |
+| g;           | go to older position in change list                       | :h jumplist               |
+| g,           | go to newer position in change list                       | :h jumplist               |
 | J            | a keymap to 5j                                            |                           |
 | K            | a keymap to 5k                                            |                           |
 | ctrl-p       | paste to next line                                        |                           |
@@ -68,6 +72,12 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | option-right | move to right                                             | mini.move                 |
 | option-up    | move to up                                                | mini.move                 |
 | option-down  | move to down                                              | mini.move                 |
+| <leader>cs   | symbol outline                                            |                           |
+| gd           | goto defination                                           | telescope                 |
+| gr           | goto reference                                            | telescope                 |
+| ;e           | goto diagnostics                                          | telescope                 |
+| ;s           | list function name, variables                             | telescope                 |
+| ;;           | resume telescope command                                  | telescope                 |
 
 ### windows
 
@@ -88,24 +98,29 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 
 ### file system
 
-| Shortcut      | Description                                                                  | implementation       |
-| ------------- | :--------------------------------------------------------------------------- | -------------------- |
-| ;f            | find files in the dir                                                        | telescope.nvim       |
-| ;r            | find words in the dir                                                        | telescope.nvim       |
-| \\            | find buffers                                                                 | telescope.nvim       |
-| ;e            | Lists Diagnostics for all open buffers or a specific buffer                  | telescope.nvim       |
-| ;;            | resume the previous telescope picker                                         | telescope.nvim       |
-| ;s            | Lists Function names, variables                                              | telescope.nvim       |
-| ;t            | Lists available help tags and opens a new window with the relevant help info | telescope.nvim       |
-| sf            | Open File Browser with the path of the current buffer                        | telescope.vim        |
-| sfc           | create a file in the current directory                                       | telescope.vim        |
-| <leader>e     | explore neotree(root dir)                                                    |                      |
-| <leader>E     | explore neotree(cmd dir)                                                     |                      |
-| <leader>H     | add file to harpoon                                                          | ThePrimeagen/harpoon |
-| <leader>h     | get files from harpoon                                                       | ThePrimeagen/harpoon |
-| <leader>{num} | choose the file from harpoon                                                 | ThePrimeagen/harpoon |
-| te            | create a new tab (save with :w filename)                                     |                      |
-| <tab>         | next tab                                                                     |                      |
+| Shortcut      | Description                                                                  | implementation                |
+| ------------- | :--------------------------------------------------------------------------- | ----------------------------- |
+| ;f            | find files in the dir                                                        | telescope.nvim                |
+| ;r            | find words in the dir                                                        | telescope.nvim                |
+| ;b            | find buffers                                                                 | telescope.nvim                |
+| [b            | last buffers                                                                 |                               |
+| ]b            | next buffers                                                                 |                               |
+| ;e            | Lists Diagnostics for all open buffers or a specific buffer                  | telescope.nvim                |
+| ;;            | resume the previous telescope picker                                         | telescope.nvim                |
+| ;s            | Lists Function names, variables                                              | telescope.nvim                |
+| ;t            | Lists available help tags and opens a new window with the relevant help info | telescope.nvim                |
+| sf            | Open File Browser with the path of the current buffer                        | telescope.vim                 |
+| sfc           | create a file in the current directory                                       | telescope.vim                 |
+| <leader>e     | explore neotree(root dir)                                                    |                               |
+| <leader>E     | explore neotree(cmd dir)                                                     |                               |
+| <leader>H     | add file to harpoon                                                          | ThePrimeagen/harpoon          |
+| <leader>h     | get files from harpoon                                                       | ThePrimeagen/harpoon          |
+| <leader>{num} | choose the file from harpoon                                                 | ThePrimeagen/harpoon          |
+| te            | create a new tab (save with :w filename)                                     |                               |
+| <tab>         | next tab                                                                     |                               |
+| ctrl-x        | Go to file selection as a split                                              | nvim-telescope/telescope.nvim |
+| ctrl-v        | Go to file selection as a vsplit                                             | nvim-telescope/telescope.nvim |
+| <leader>fP    | list the neovim plugin files                                                 | telescope                     |
 
 ## kitty
 
@@ -116,9 +131,18 @@ You can change the color scheme with command:
 kitten themes
 ```
 
-| Shortcut    | Description                     | implementation |
-| ----------- | :------------------------------ | -------------- |
-| command-{i} | move to the tab that index is i |                |
+| Shortcut            | Description                     | implementation |
+| ------------------- | :------------------------------ | -------------- |
+| command-{i}         | move to the tab that index is i |                |
+| command + enter     | new window                      |                |
+| command + n         | new OS window                   |                |
+| shift + command + d | close window                    |                |
+| command + r         | resize window                   |                |
+| shift+command + [   | previous window                 |                |
+| shift+command + ]   | next window                     |                |
+| shift+command + b   | move window backward(not work)  |                |
+| shift+command + f   | move window forward             |                |
+| shift+command + k   | move window top                 |                |
 
 ## Base Tool
 
