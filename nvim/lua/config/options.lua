@@ -9,6 +9,7 @@ vim.g.maplocalleader = "\\"
 -- Enable LazyVim auto format
 vim.g.autoformat = true
 
+vim.opt.termguicolors = true
 -- LazyVim root dir detection
 -- Each entry can be:
 -- * the name of a detector function like `lsp` or `cwd`
@@ -119,7 +120,10 @@ vim.o.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
 vim.g.markdown_recommended_style = 0
 
 -- vim.opt.winbar = "%=%m %f"
-
 -- Undercurl(works on kitty)
+-- [4:3m  undercurl
+-- [4:2m  underline
+-- [4:0m  none
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
+-- vim.cmd([[let &t_Ce = "\e[58...m"]])
