@@ -82,6 +82,16 @@ return {
         desc = "Lists files in your current working directory, respects .gitignore",
       },
       {
+        ";w",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.grep_string({
+            use_regex = true,
+          })
+        end,
+        desc = "Search for a string in current file",
+      },
+      {
         ";r",
         function()
           local builtin = require("telescope.builtin")
