@@ -102,6 +102,8 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ------------- | :--------------------------------------------------------------------------- | ----------------------------- |
 | ;f            | find files in the dir                                                        | telescope.nvim                |
 | ;r            | find words in the dir                                                        | telescope.nvim                |
+| ;w            | find words in the file                                                       | telescope.nvim                |
+| ;p            | find projects                                                                | GnikDroy/projections.nvim     |
 | ;b            | find buffers                                                                 | telescope.nvim                |
 | [b            | last buffers                                                                 |                               |
 | ]b            | next buffers                                                                 |                               |
