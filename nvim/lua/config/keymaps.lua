@@ -47,3 +47,29 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
 -- keymap.set("n", "sd", "<Space-w>d", opts)
+
+---- Page up/down
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), mode, false)
+end
+
+keymap.set("n", "<C-u>", function()
+  local height = math.floor(math.min(vim.fn.winheight(0) / 2, 20))
+  feedkey(height .. "<C-u>", "n")
+end)
+keymap.set("n", "<C-d>", function()
+  local height = math.floor(math.min(vim.fn.winheight(0) / 2, 20))
+  feedkey(height .. "<C-d>", "n")
+end)
+
+-- Terminal
+keymap.set("n", "<A-CR>", '<Cmd>exe winheight(0)/3."split" | term<CR>', opts)
+-- keymap.set("n", "<A-CR>", function()
+--   require("toggleterm").exec_command("cmd='go run .'")
+-- end, { desc = "run project" })
+-- keymap.set("n", "<leader>tt", function()
+--   require("toggleterm").toggle_all()
+-- end, { desc = "toggle all term", noremap = true })
+-- keymap.set("n", "<leader>to", function()
+--   require("toggleterm").exec_command("cmd='fish'")
+-- end, { desc = "toggle all term", noremap = true })

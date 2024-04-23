@@ -28,7 +28,8 @@ vim.g.lazygit_config = true
 -- This sets `vim.o.shell` and does some additional configuration for:
 -- * pwsh
 -- * powershell
--- LazyVim.terminal.setup("pwsh")
+-- LzyVim.terminal.setup("fish")
+vim.o.shell = "/opt/homebrew/bin/fish"
 
 local opt = vim.opt
 

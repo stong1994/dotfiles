@@ -16,3 +16,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.conceallevel = 0
   end,
 })
+
+vim.api.nvim_create_autocmd({ "TermOpen", "WinEnter" }, {
+  callback = function()
+    if vim.opt.buftype:get() == "terminal" then
+      vim.cmd("set nonu")
+      vim.cmd("set norelativenumber")
+      vim.cmd("startinsert")
+    end
+  end,
+})
