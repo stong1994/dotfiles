@@ -22,6 +22,7 @@ $nim\
 $rust\
 $scala\
 $cmd_duration\
+$time\
 $line_break\
 $character\
 """
@@ -38,8 +39,9 @@ format = '[$symbol ]($style)'
 style = "bg:#C2B4DF"
 
 [character]
-success_symbol = '[❯](bold #C2B4DF) '
-error_symbol = '[❯](bold purple) '
+vimcmd_symbol = '[V](bold green) '
+success_symbol = '[➜](bold green) '
+error_symbol = '[✗](bold red) '
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
 [username]
@@ -59,10 +61,13 @@ disabled = true      # Disabled by default
 
 [directory]
 style = "bg:#034D4E"
-format = "[ $path ]($style)"
-truncation_length = 8
-truncation_symbol = ""
-fish_style_pwd_dir_length = 0
+# before_repo_root_style = "bg:#9A348E"
+# repo_root_style = "fg:green"
+repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
+format = "[$path]($style)"
+truncation_length = 3
+truncation_symbol = ''
+use_logical_path = true
 
 # Here is how you can shorten some long paths by text replacement
 # similar to mapped_locations in Oh My Posh:
@@ -152,9 +157,9 @@ format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
-time_format = "%R"             # Hour:Minute Format
+time_format = "%R"            # Hour:Minute Format
 style = "bg:#33658A"
-format = '[ ♥ $time ]($style)'
+format = '[ 🕙$time ]($style)'
 
 [cmd_duration]
 min_time = 500
