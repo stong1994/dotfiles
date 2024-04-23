@@ -1,3 +1,5 @@
+local keymap = require("stong.utils.keymap")
+
 return {
   {
     enabled = false,
@@ -70,46 +72,46 @@ return {
         end,
         desc = "Find Plugin File",
       },
-      {
-        ";f",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.find_files({
-            no_ignore = false,
-            hidden = true,
-          })
-        end,
-        desc = "Lists files in your current working directory, respects .gitignore",
-      },
-      {
-        ";w",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.grep_string({
-            use_regex = true,
-          })
-        end,
-        desc = "Search for a string in current file",
-      },
-      {
-        ";r",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.live_grep({
-            additional_args = { "--hidden" },
-            use_regex = true,
-          })
-        end,
-        desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
-      },
-      {
-        ";b",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.buffers()
-        end,
-        desc = "Lists open buffers",
-      },
+      -- {
+      --   ";f",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.find_files({
+      --       no_ignore = false,
+      --       hidden = true,
+      --     })
+      --   end,
+      --   desc = "Lists files in your current working directory, respects .gitignore",
+      -- },
+      -- {
+      --   ";w",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.grep_string({
+      --       use_regex = true,
+      --     })
+      --   end,
+      --   desc = "Search for a string in current file",
+      -- },
+      -- {
+      --   ";r",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.live_grep({
+      --       additional_args = { "--hidden" },
+      --       use_regex = true,
+      --     })
+      --   end,
+      --   desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+      -- },
+      -- {
+      --   ";b",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.buffers()
+      --   end,
+      --   desc = "Lists open buffers",
+      -- },
       {
         ";t",
         function()
@@ -126,48 +128,48 @@ return {
         end,
         desc = "Resume the previous telescope picker",
       },
-      {
-        ";e",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.diagnostics()
-        end,
-        desc = "Lists Diagnostics for all open buffers or a specific buffer",
-      },
-      {
-        ";s",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.treesitter()
-        end,
-        desc = "Lists Function names, variables, from Treesitter",
-      },
-      {
-        "gd",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.lsp_definitions({})
-        end,
-        desc = "LSP Goto Defination by telescope",
-      },
-      {
-        "gi",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.lsp_implementations({})
-        end,
-        desc = "LSP Goto Implementations by telescope",
-      },
-      {
-        "gr",
-        function()
-          local builtin = require("telescope.builtin")
-          builtin.lsp_references({
-            include_declaration = false, -- TODO: not work
-          })
-        end,
-        desc = "Lsp Goto Reference by telescope",
-      },
+      -- {
+      --   ";e",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.diagnostics()
+      --   end,
+      --   desc = "Lists Diagnostics for all open buffers or a specific buffer",
+      -- },
+      -- {
+      --   ";s",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.treesitter()
+      --   end,
+      --   desc = "Lists Function names, variables, from Treesitter",
+      -- },
+      -- {
+      --   "gd",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.lsp_definitions({})
+      --   end,
+      --   desc = "LSP Goto Defination by telescope",
+      -- },
+      -- {
+      --   "gi",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.lsp_implementations({})
+      --   end,
+      --   desc = "LSP Goto Implementations by telescope",
+      -- },
+      -- {
+      --   "gr",
+      --   function()
+      --     local builtin = require("telescope.builtin")
+      --     builtin.lsp_references({
+      --       include_declaration = false, -- TODO: not work
+      --     })
+      --   end,
+      --   desc = "Lsp Goto Reference by telescope",
+      -- },
       {
         "sf",
         function()
@@ -348,6 +350,63 @@ return {
         replace = "gsr",
         update_n_lines = "gsn",
       },
+    },
+  },
+  {
+    -- optional for icons
+    { "nvim-tree/nvim-web-devicons" },
+
+    -- optional for the 'fzf' command
+    {
+      "junegunn/fzf",
+      build = function()
+        vim.fn["fzf#install"]()
+      end,
+    },
+
+    {
+      "linrongbin16/fzfx.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
+
+      -- specify version to avoid break changes
+      version = "v5.*",
+
+      config = function()
+        require("fzfx").setup()
+        -- files
+        keymap.default_map_n(";f", "<cmd>FzfxFiles<cr>", { desc = "Find files" })
+        keymap.default_map_x(";f", "<cmd>FzfxFiles visual<cr>", { desc = "Find files" })
+        keymap.default_map_n(";wf", "<cmd>FzfxFiles cword<cr>", { desc = "Find files by cursor word" })
+        keymap.default_map_n(";yf", "<cmd>FzfxFiles put<cr>", { desc = "Find files by yank text" })
+        keymap.default_map_n(";lf", "<cmd>FzfxFiles resume<cr>", { desc = "Find files by resume last" })
+        -- live grep
+        keymap.default_map_n(";r", "<cmd>FzfxLiveGrep<cr>", { desc = "Live grep" })
+        keymap.default_map_x(";r", "<cmd>FzfxLiveGrep visual<cr>", { desc = "Live grep" })
+        keymap.default_map_n(";wr", "<cmd>FzfxLiveGrep cword<cr>", { desc = "Live grep by cursor word" })
+        keymap.default_map_n(";yr", "<cmd>FzfxLiveGrep put<cr>", { desc = "Live grep by yank text" })
+        keymap.default_map_n(";lr", "<cmd>FzfxLiveGrep resume<cr>", { desc = "Live grep by resume last" })
+        -- git
+        keymap.default_map_n(";gs", "<cmd>FzfxGStatus<cr>", { desc = "Find git changed fields" })
+        keymap.default_map_n(";gb", "<cmd>FzfxGBranches<cr>", { desc = "Search git branches" })
+        keymap.default_map_n(";gc", "<cmd>FzfxGCommits<cr>", { desc = "Search git commmits" })
+        keymap.default_map_n(";gm", "<cmd>FzfxGBlame<cr>", { desc = "Search git blame" })
+        -- lsp
+        keymap.default_map_n(";e", "<cmd>FzfxLspDiagnostics<cr>", { desc = "Search lsp diagnostics" })
+        keymap.default_map_n("gd", "<cmd>FzfxLspDefinitions<cr>", { desc = "Goto lsp definition" })
+        keymap.default_map_n("gr", "<cmd>FzfxLspReferences<cr>", { desc = "Goto lsp reference" })
+        keymap.default_map_n("gi", "<cmd>FzfxLspImplementations<cr>", { desc = "Goto lsp Implementations" })
+        keymap.default_map_n("gt", "<cmd>FzfxLspTypeDefinitions<cr>", { desc = "Goto lsp type definition" })
+        keymap.default_map_n("gci", "<cmd>FzfxLspIncomingCalls<cr>", { desc = "Goto lsp incoming calls" })
+        keymap.default_map_n("gco", "<cmd>FzfxLspOutgoingCalls<cr>", { desc = "Goto lsp outgoing calls" })
+        -- vim command
+        keymap.default_map_n(";c", "<cmd>FzfxCommands<cr>", { desc = "Search vim commands" })
+        -- key maps
+        keymap.default_map_n(";km", "<cmd>FzfxKeyMaps<cr>", { desc = "Search vim keymaps" })
+        -- vim marks
+        keymap.default_map_n(";mk", "<cmd>FzfxMarks<cr>", { desc = "Search vim marks" })
+        -- file explorer
+        keymap.default_map_n(";p", "<cmd>FzfxFileExplorer<cr>", { desc = "File explorer" })
+      end,
     },
   },
 }
