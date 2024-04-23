@@ -256,6 +256,7 @@ return {
     dependencies = {
       "nvim-telescope/telescope.nvim",
     },
+    lazy = true,
     config = function()
       require("projections").setup({
         workspaces = { -- Default workspaces to search for
