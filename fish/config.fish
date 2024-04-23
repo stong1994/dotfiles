@@ -12,6 +12,8 @@ alias fzfp "fzf --preview 'bat --color=always --style=numbers --line-range=:500 
 
 set -gx EDITOR nvim
 
+set -gx LS_COLORS "$(vivid generate snazzy)" # colorized output of `tree`,`fd`..
+
 fish_add_path /Users/stong/ghq/github.com/stong1994/ghq
 
 if status is-interactive
