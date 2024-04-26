@@ -22,17 +22,17 @@ return {
     lazy = true,
     keys = {
       {
-        "E",
+        "e",
         "<cmd>lua require('spider').motion('e')<CR>",
         mode = { "n", "o", "x" },
       },
       {
-        "W",
+        "w",
         "<cmd>lua require('spider').motion('w')<CR>",
         mode = { "n", "o", "x" },
       },
       {
-        "B",
+        "b",
         "<cmd>lua require('spider').motion('b')<CR>",
         mode = { "n", "o", "x" },
       },
