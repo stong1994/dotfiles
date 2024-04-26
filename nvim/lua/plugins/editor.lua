@@ -136,14 +136,14 @@ return {
       --   end,
       --   desc = "Lists Diagnostics for all open buffers or a specific buffer",
       -- },
-      -- {
-      --   ";s",
-      --   function()
-      --     local builtin = require("telescope.builtin")
-      --     builtin.treesitter()
-      --   end,
-      --   desc = "Lists Function names, variables, from Treesitter",
-      -- },
+      {
+        ";s",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.treesitter()
+        end,
+        desc = "Lists Function names, variables, from Treesitter",
+      },
       -- {
       --   "gd",
       --   function()
@@ -372,19 +372,83 @@ return {
       version = "v5.*",
 
       config = function()
-        require("fzfx").setup()
+        require("fzfx").setup({
+          users = {
+            ls = {
+              command = {
+                name = "FzfxLs",
+                desc = "File Explorer (ls -1)",
+              },
+              variants = {
+                {
+                  name = "args",
+                  feed = "args",
+                  default_provider = "filter_hiddens",
+                },
+                {
+                  name = "hidden_args",
+                  feed = "args",
+                  default_provider = "include_hiddens",
+                },
+              },
+              providers = {
+                filter_hiddens = {
+                  key = "ctrl-h",
+                  provider = { "ls", "--color=always", "-1" },
+                },
+                include_hiddens = {
+                  key = "ctrl-u",
+                  provider = { "ls", "--color=always", "-1a" },
+                },
+              },
+              previewers = {
+                filter_hiddens = {
+                  previewer = function(line)
+                    -- each line is either a folder or a file
+                    return vim.fn.isdirectory(line) > 0 and { "ls", "--color=always", "-lha", line } or { "cat", line }
+                  end,
+                  previewer_type = "command_list",
+                },
+                include_hiddens = {
+                  previewer = function(line)
+                    return vim.fn.isdirectory(line) > 0 and { "ls", "--color=always", "-lha", line } or { "cat", line }
+                  end,
+                  previewer_type = "command_list",
+                },
+              },
+              actions = {
+                ["esc"] = function(lines)
+                  -- do nothing
+                end,
+                ["enter"] = function(lines)
+                  for _, line in ipairs(lines) do
+                    vim.cmd(string.format([[edit %s]], line))
+                  end
+                end,
+              },
+              fzf_opts = {
+                "--multi",
+                { "--prompt", "Ls > " },
+              },
+            },
+          },
+        })
         -- files
         keymap.default_map_n(";f", "<cmd>FzfxFiles<cr>", { desc = "Find files" })
         keymap.default_map_x(";f", "<cmd>FzfxFiles visual<cr>", { desc = "Find files" })
         keymap.default_map_n(";wf", "<cmd>FzfxFiles cword<cr>", { desc = "Find files by cursor word" })
         keymap.default_map_n(";yf", "<cmd>FzfxFiles put<cr>", { desc = "Find files by yank text" })
         keymap.default_map_n(";lf", "<cmd>FzfxFiles resume<cr>", { desc = "Find files by resume last" })
+        -- buffers
+        keymap.default_map_n(";b", "<cmd>FzfxBuffers<cr>", { desc = "Find buffers" })
+        -- buffers
         -- live grep
         keymap.default_map_n(";r", "<cmd>FzfxLiveGrep<cr>", { desc = "Live grep" })
         keymap.default_map_x(";r", "<cmd>FzfxLiveGrep visual<cr>", { desc = "Live grep" })
         keymap.default_map_n(";wr", "<cmd>FzfxLiveGrep cword<cr>", { desc = "Live grep by cursor word" })
         keymap.default_map_n(";yr", "<cmd>FzfxLiveGrep put<cr>", { desc = "Live grep by yank text" })
         keymap.default_map_n(";lr", "<cmd>FzfxLiveGrep resume<cr>", { desc = "Live grep by resume last" })
+        keymap.default_map_n(";fr", "<cmd>FzfxBufLiveGrep<cr>", { desc = "Live grep buffers" })
         -- git
         keymap.default_map_n(";gs", "<cmd>FzfxGStatus<cr>", { desc = "Find git changed fields" })
         keymap.default_map_n(";gb", "<cmd>FzfxGBranches<cr>", { desc = "Search git branches" })
