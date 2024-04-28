@@ -1,4 +1,7 @@
 return {
+  {
+    "dstein64/vim-startuptime",
+  },
   -- color preview
   {
     "NvChad/nvim-colorizer.lua",
