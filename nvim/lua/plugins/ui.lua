@@ -95,9 +95,7 @@ return {
           groups = {
             InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
             InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
-            CursorLineNr = { guifg = colors.blue500, guibg = colors.yellow300 },
-            Cursor = { guifg = colors.blue500, guibg = colors.yellow300 },
-            CursorIM = { guifg = colors.blue500, guibg = colors.yellow300 },
+            CursorLineNr = { guifg = colors.base4, guibg = colors.orange },
             lCursor = { guifg = colors.blue500, guibg = colors.yellow300 },
             Search = { guifg = colors.blue500, guibg = colors.yellow300 },
           },
