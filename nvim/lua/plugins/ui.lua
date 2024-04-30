@@ -95,12 +95,17 @@ return {
           groups = {
             InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
             InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
+            CursorLineNr = { guifg = colors.blue500, guibg = colors.yellow300 },
+            Cursor = { guifg = colors.blue500, guibg = colors.yellow300 },
+            CursorIM = { guifg = colors.blue500, guibg = colors.yellow300 },
+            lCursor = { guifg = colors.blue500, guibg = colors.yellow300 },
+            Search = { guifg = colors.blue500, guibg = colors.yellow300 },
           },
         },
         window = { margin = { vertical = 0, horizontal = 1 } },
-        hide = {
-          cursorline = true,
-        },
+        -- hide = {
+        --   cursorline = true,
+        -- },
         render = function(props)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
           if vim.bo[props.buf].modified then
