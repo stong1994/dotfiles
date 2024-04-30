@@ -353,6 +353,22 @@ return {
     },
   },
   {
+    "echasnovski/mini.move",
+    opts = {
+      mappings = {
+        left = "<A-h>",
+        right = "<A-l>",
+        down = "<A-j>",
+        up = "<A-k>",
+
+        line_left = "<A-h>",
+        line_right = "<A-l>",
+        line_up = "<A-j>",
+        line_down = "<A-k>",
+      },
+    },
+  },
+  {
     -- optional for icons
     { "nvim-tree/nvim-web-devicons" },
 
@@ -441,14 +457,13 @@ return {
         keymap.default_map_n(";lf", "<cmd>FzfxFiles resume<cr>", { desc = "Find files by resume last" })
         -- buffers
         keymap.default_map_n(";b", "<cmd>FzfxBuffers<cr>", { desc = "Find buffers" })
-        -- buffers
         -- live grep
         keymap.default_map_n(";r", "<cmd>FzfxLiveGrep<cr>", { desc = "Live grep" })
         keymap.default_map_x(";r", "<cmd>FzfxLiveGrep visual<cr>", { desc = "Live grep" })
         keymap.default_map_n(";wr", "<cmd>FzfxLiveGrep cword<cr>", { desc = "Live grep by cursor word" })
         keymap.default_map_n(";yr", "<cmd>FzfxLiveGrep put<cr>", { desc = "Live grep by yank text" })
         keymap.default_map_n(";lr", "<cmd>FzfxLiveGrep resume<cr>", { desc = "Live grep by resume last" })
-        keymap.default_map_n(";fr", "<cmd>FzfxBufLiveGrep<cr>", { desc = "Live grep buffers" })
+        keymap.default_map_n(";br", "<cmd>FzfxBufLiveGrep<cr>", { desc = "Live grep buffers" })
         -- git
         keymap.default_map_n(";gs", "<cmd>FzfxGStatus<cr>", { desc = "Find git changed fields" })
         keymap.default_map_n(";gb", "<cmd>FzfxGBranches<cr>", { desc = "Search git branches" })
