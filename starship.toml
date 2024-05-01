@@ -176,5 +176,6 @@ symbol = " "
 [cmd_duration]
 min_time = 500
 style = "bg:#584D37 inverted"
-#format = 'took [$duration](bold yellow)($style)'
-format = '[⏱️$duration]($style)'
+format = '[](fg:color_bg1)[󱑃 $duration](bold bg:color_bg1 fg:color_fg0)'
+#format = '[ $duration](bold yellow)($style)'
+#format = '[⏱️$duration]($style)'
