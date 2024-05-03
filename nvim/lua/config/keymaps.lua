@@ -72,3 +72,4 @@ keymap.default_map_n("<A-CR>", '<Cmd>exe winheight(0)/3."split" | term<CR>', { d
 -- keymap.set("n", "<leader>to", function()
 --   require("toggleterm").exec_command("cmd='fish'")
 -- end, { desc = "toggle all term", noremap = true })
+keymap.default_map_n("<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>") -- auto code if err .. in go
