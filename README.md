@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD013  -->
+
 # Stong's dotfiles
 
 ## Fish
@@ -27,9 +29,7 @@ Fish is a interactive shell, you can find anything about it in the [document](ht
 | ctrl-b      | Backward a word like vim in command line                   | fish_user_key_bindings.fish |
 | ctrl-i      | Move to the begin of line like vim in command line         | fish_user_key_bindings.fish |
 
-# Neovim
-
-## Shortcut
+## Neovim
 
 ### ui
 
@@ -64,9 +64,9 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ctrl-s       | save the file                                             |                           |
 | +            | expand the visual selection                               | terryma/vim-expand-region |
 | -            | shrink the visual selection                               | terryma/vim-expand-region |
-| W            | forward next word like w but can recognize cojoined words | chrisgrieser/nvim-spider  |
-| E            | forward next word like e but can recognize cojoined words | chrisgrieser/nvim-spider  |
-| B            | forward next word like b but can recognize cojoined words | chrisgrieser/nvim-spider  |
+| w            | forward next word like w but can recognize cojoined words | chrisgrieser/nvim-spider  |
+| e            | forward next word like e but can recognize cojoined words | chrisgrieser/nvim-spider  |
+| b            | forward next word like b but can recognize cojoined words | chrisgrieser/nvim-spider  |
 | <leader>sf   | tag all words to jump                                     | phaazon/hop.nvim          |
 | option-left  | move to left (todo option-l not work)                     | mini.move                 |
 | option-right | move to right                                             | mini.move                 |
@@ -78,6 +78,10 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ;e           | goto diagnostics                                          | telescope                 |
 | ;s           | list function name, variables                             | telescope                 |
 | ;;           | resume telescope command                                  | telescope                 |
+| ctrl-u       | scroll up                                                 |                           |
+| ctrl-d       | scroll down                                               |                           |
+| tl           | translate current word                                    | voldikss/vim-translator   |
+| <leader>ee   | auto generate if err != nil ... in go                     |                           |
 
 ### windows
 
@@ -94,15 +98,15 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ctrl-j     | choose below window           |                |
 | ctrl-k     | choose above window           |                |
 | ctrl-l     | choose right window           |                |
-|            |                               |                |
+| option-cr  | show terminal below           |                |
 
 ### file system
 
 | Shortcut      | Description                                                                  | implementation                |
 | ------------- | :--------------------------------------------------------------------------- | ----------------------------- |
-| ;f            | find files in the dir                                                        | telescope.nvim                |
-| ;r            | find words in the dir                                                        | telescope.nvim                |
-| ;w            | find words in the file                                                       | telescope.nvim                |
+| ;f            | find files under root                                                        | telescope.nvim                |
+| ;r            | find words in files under root                                               | telescope.nvim                |
+| ;br           | find words in buffers                                                        | telescope.nvim                |
 | ;p            | find projects                                                                | GnikDroy/projections.nvim     |
 | ;b            | find buffers                                                                 | telescope.nvim                |
 | [b            | last buffers                                                                 |                               |
@@ -112,7 +116,6 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ;s            | Lists Function names, variables                                              | telescope.nvim                |
 | ;t            | Lists available help tags and opens a new window with the relevant help info | telescope.nvim                |
 | sf            | Open File Browser with the path of the current buffer                        | telescope.vim                 |
-| sfc           | create a file in the current directory                                       | telescope.vim                 |
 | <leader>e     | explore neotree(root dir)                                                    |                               |
 | <leader>E     | explore neotree(cmd dir)                                                     |                               |
 | <leader>H     | add file to harpoon                                                          | ThePrimeagen/harpoon          |
@@ -133,18 +136,21 @@ You can change the color scheme with command:
 kitten themes
 ```
 
-| Shortcut            | Description                     | implementation |
-| ------------------- | :------------------------------ | -------------- |
-| command-{i}         | move to the tab that index is i |                |
-| command + enter     | new window                      |                |
-| command + n         | new OS window                   |                |
-| shift + command + d | close window                    |                |
-| command + r         | resize window                   |                |
-| shift+command + [   | previous window                 |                |
-| shift+command + ]   | next window                     |                |
-| shift+command + b   | move window backward(not work)  |                |
-| shift+command + f   | move window forward             |                |
-| shift+command + k   | move window top                 |                |
+| Shortcut              | Description                     | implementation |
+| --------------------- | :------------------------------ | -------------- |
+| command-{i}           | move to the tab that index is i |                |
+| command + enter       | new window                      |                |
+| command + n           | new OS window                   |                |
+| shift + command + d   | close window                    |                |
+| shift+command + left  | resize window narrower          |                |
+| shift+command + right | resize window wider             |                |
+| shift+command + up    | resize window taller            |                |
+| shift+command + down  | resize window shorter           |                |
+| shift+command + [     | previous window                 |                |
+| shift+command + ]     | next window                     |                |
+| shift+command + b     | move window backward(not work)  |                |
+| shift+command + f     | move window forward             |                |
+| shift+command + k     | move window top                 |                |
 
 ## Base Tool
 
