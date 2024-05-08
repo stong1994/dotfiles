@@ -11,7 +11,4 @@ function fish_user_key_bindings
     bind \cb backward-word
     bind \ci beginning-of-line
     bind \t complete
-    #
-    # prevent iterm2 from closing when typing Ctrl-D (EOF)
-    bind \cd delete-char
 end
