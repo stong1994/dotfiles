@@ -207,6 +207,7 @@ return {
       },
     },
     keys = { { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+    lazy = true,
   },
   -- symbols outline
   {
