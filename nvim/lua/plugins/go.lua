@@ -23,8 +23,6 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      vim.g.go_term_mode = "split"
-      vim.g.go_term_enabled = 1
       require("go").setup({
         luasnip = true,
       })
