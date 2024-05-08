@@ -12,11 +12,14 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
+      "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
       local cmp_action = require("lsp-zero").cmp_action()
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
+      local lspkind = require("lspkind")
+      local has_words = require("stong.utils.hasword")
 
       cmp.setup({
         snippet = {
@@ -43,10 +46,19 @@ return {
           ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
           -- ["<C-f>"] = cmp_action.luasnip_jump_forward(),
           -- ["<C-b>"] = cmp_action.luasnip_jump_backward(),
-          ["<Tab>"] = cmp_action.luasnip_supertab(),
+          -- ["<Tab>"] = cmp_action.luasnip_supertab(),
+          ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            if cmp.visible() and has_words.before() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+              fallback()
+            end
+          end),
           ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
         }),
         sources = cmp.config.sources({
+          -- Copilot Source
+          { name = "copilot", group_index = 2 },
           { name = "nvim_lsp" },
           -- { name = "vsnip" }, -- For vsnip users.
           { name = "luasnip" }, -- For luasnip users.
@@ -54,9 +66,16 @@ return {
           -- { name = 'snippy' }, -- For snippy users.
           { name = "buffer", keyword_length = 3 },
           { name = "path" },
-        }, {
-          { name = "buffer" },
+          -- }, {
+          --   { name = "buffer" },
         }),
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = "symbol",
+            max_width = 50,
+            symbol_map = { Copilot = "" },
+          }),
+        },
       })
 
       -- Set configuration for specific filetype.
