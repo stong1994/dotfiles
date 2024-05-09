@@ -15,7 +15,7 @@ alias ghcs "gh copilot suggest -t shell"
 alias ghcg "gh copilot suggest -t git"
 alias ghce "gh copilot explain"
 set -gx EDITOR nvim
-set -gx XDG_CONFIG_HOME "$HOME/.config/lazygit"
+set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 set -gx LS_COLORS "$(vivid generate snazzy)" # colorized output of `tree`,`fd`..
 
