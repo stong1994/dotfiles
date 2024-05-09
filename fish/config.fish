@@ -11,12 +11,16 @@ alias cat='bat --paging=never'
 alias fzfp "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 alias gitdiff 'git diff --name-only --diff-filter=d | xargs bat --diff'
 alias autodev '/Users/stong/Project/Personal/dev_helper/autodev/autodev.sh'
+alias ghcs "gh copilot suggest -t shell"
+alias ghcg "gh copilot suggest -t git"
+alias ghce "gh copilot explain"
 set -gx EDITOR nvim
+set -gx XDG_CONFIG_HOME "$HOME/.config/lazygit"
 
 set -gx LS_COLORS "$(vivid generate snazzy)" # colorized output of `tree`,`fd`..
 
-fish_add_path /Users/stong/ghq/github.com/stong1994/ghq
-fish_add_path /Users/stong/Project/Github/github.com/Raghav-rv28/kitty-sesh
+fish_add_path "$HOME/ghq/github.com/stong1994/ghq"
+fish_add_path "$HOME/Project/Github/github.com/Raghav-rv28/kitty-sesh"
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
