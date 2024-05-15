@@ -7,6 +7,18 @@ return {
       return {}
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = true,
+          },
+        },
+      },
+    },
+  },
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
