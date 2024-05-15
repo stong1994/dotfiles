@@ -14,13 +14,18 @@ alias autodev '/Users/stong/Project/Personal/dev_helper/autodev/autodev.sh'
 alias ghcs "gh copilot suggest -t shell"
 alias ghcg "gh copilot suggest -t git"
 alias ghce "gh copilot explain"
+
 set -gx EDITOR nvim
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
+set -gx GOBIN "$HOME/go/bin/"
 set -gx LS_COLORS "$(vivid generate snazzy)" # colorized output of `tree`,`fd`..
 
 fish_add_path "$HOME/ghq/github.com/stong1994/ghq"
 fish_add_path "$HOME/Project/Github/github.com/Raghav-rv28/kitty-sesh"
+fish_add_path "/Applications/kitty.app/Contents/MacOS/"
+fish_add_path "$HOME/.local/share/bob/nvim-bin"
+fish_add_path $GOBIN
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
