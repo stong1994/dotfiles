@@ -79,9 +79,12 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ;s           | list function name, variables                             | telescope                 |
 | ;;           | resume telescope command                                  | telescope                 |
 | ctrl-u       | scroll up                                                 |                           |
-| ctrl-d       | scroll down                                               |                           |
+| ctrl-n       | scroll down                                               |                           |
 | tl           | translate current word                                    | voldikss/vim-translator   |
 | <leader>ee   | auto generate if err != nil ... in go                     |                           |
+| <leader>S    | search and replace window toggle                          | nvim-pack/nvim-spectre    |
+| <leader>sw   | search and replace current word                           | nvim-pack/nvim-spectre    |
+| <leader>sp   | search and replace current word in current file           | nvim-pack/nvim-spectre    |
 
 ### windows
 
