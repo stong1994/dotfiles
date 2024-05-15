@@ -37,8 +37,10 @@ return {
     },
     opts = {
       debug = true, -- Enable debugging
+      proxy = "http://127.0.0.1:7890",
       -- See Configuration section for rest
     },
+    lazy = false,
     keys = {
       -- Quick chat with Copilot
       {
@@ -66,7 +68,7 @@ return {
           local actions = require("CopilotChat.actions")
           require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
         end,
-        desc = "CopilotChat - Help actions",
+        desc = "CopilotChat - Prompt actions",
       },
       {
         "ccp",
