@@ -56,9 +56,9 @@ keymap.default_map_n("<C-u>", function()
   local height = math.floor(math.min(vim.fn.winheight(0) / 2, 20))
   feedkey(height .. "<C-u>", "n")
 end)
-keymap.default_map_n("<C-d>", function()
+keymap.default_map_n("<C-n>", function()
   local height = math.floor(math.min(vim.fn.winheight(0) / 2, 20))
-  feedkey(height .. "<C-d>", "n")
+  feedkey(height .. "<C-n>", "n")
 end)
 
 -- Terminal
