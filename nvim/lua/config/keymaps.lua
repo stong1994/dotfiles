@@ -10,6 +10,7 @@ local keymap = require("stong.utils.keymap")
 keymap.default_map_n("<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next Buffer" })
 keymap.default_map_n("<C-i>", "<C-i>", { desc = "Define C-i to resove conflict with Tab and Ctrl-i" })
 keymap.default_map_n("<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Last Buffer" })
+keymap.default_map({ "n", "x", "i" }, ",,", "<Esc>", { desc = "replace Esc" })
 
 -- Copy content to the next line
 keymap.default_map_n("<C-p>", "m`o<ESC>p>`", { desc = "Copy content to the next line" })
@@ -58,7 +59,7 @@ keymap.default_map_n("<C-u>", function()
 end)
 keymap.default_map_n("<C-n>", function()
   local height = math.floor(math.min(vim.fn.winheight(0) / 2, 20))
-  feedkey(height .. "<C-n>", "n")
+  feedkey(height .. "<C-d>", "n")
 end)
 
 -- Terminal

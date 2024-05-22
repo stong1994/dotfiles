@@ -47,6 +47,7 @@ return {
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
+          cmp.scroll_docs,
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -54,7 +55,7 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+          ["<C-u>"] = cmp.mapping.select_prev_item(cmp_select),
           ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
           -- ["<C-f>"] = cmp_action.luasnip_jump_forward(),
           -- ["<C-b>"] = cmp_action.luasnip_jump_backward(),
