@@ -22,6 +22,8 @@ keymap.default_map_n("[b", [[<cmd>bprevious<cr>]])
 -- Quick Move
 keymap.default_map_n("J", "10j")
 keymap.default_map_n("K", "10k")
+keymap.default_map_n("<S-l>", "$", { desc = "move end of line" })
+keymap.default_map_n("<S-h>", "^", { desc = "move begin of line" })
 
 -- Select all
 keymap.default_map_n("<C-a>", "gg<S-v>G", { desc = "Select all" })
