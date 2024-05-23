@@ -80,6 +80,58 @@ return {
         desc = "CopilotChat - Prompt actions",
       },
     },
+    config = function()
+      local select = require("CopilotChat.select")
+      require("CopilotChat").setup({
+        prompts = {
+          Explain = {
+            prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text.",
+          },
+          Review = {
+            prompt = "/COPILOT_REVIEW Review the selected code.",
+            callback = function(response, source)
+              -- see config.lua for implementation
+            end,
+          },
+          Fix = {
+            prompt = "/COPILOT_GENERATE There is a problem in this code. Rewrite the code to show it with the bug fixed.",
+          },
+          Optimize = {
+            prompt = "/COPILOT_GENERATE Optimize the selected code to improve performance and readablilty.",
+          },
+          Docs = {
+            prompt = "/COPILOT_GENERATE Please add documentation comment for the selection.",
+          },
+          Tests = {
+            prompt = "/COPILOT_GENERATE Please generate tests for my code.",
+          },
+          FixDiagnostic = {
+            prompt = "Please assist with the following diagnostic issue in file:",
+            selection = select.diagnostics,
+          },
+          Commit = {
+            prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.",
+            selection = select.gitdiff,
+          },
+          CommitStaged = {
+            prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.",
+            selection = function(source)
+              return select.gitdiff(source, true)
+            end,
+          },
+          CommitCli = {
+            prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be two messages: title and description. Wrap the tilte and description to a command like `git commit -m {title} -m {description}`. For example: You got title is 'feat: user login' and description is 'Add user login component', So the commmand should be `git commit  -m 'feat: user login' -m 'Add user login component'`",
+            selection = select.gitdiff,
+          },
+          CommitStagedCli = {
+            prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be two messages: title and description. Wrap the tilte and description to a command like `git commit -m {title} -m {description}`. For example: You got title is 'feat: user login' and description is 'Add user login component', So the commmand should be `git commit  -m 'feat: user login' -m 'Add user login component'`.",
+            selection = function(source)
+              return select.gitdiff(source, true)
+            end,
+          },
+        },
+      })
+    end,
   },
   {
     "folke/edgy.nvim",
