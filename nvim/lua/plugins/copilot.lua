@@ -82,6 +82,8 @@ return {
     },
     config = function()
       local select = require("CopilotChat.select")
+      local commitCliPrompt =
+        "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be multi messages: title and details. Wrap the tilte and details to a command like `git commit -m {title} -m {detail1} -m {detail2}`. For example: You got title is 'feat: user login' and details are 'Add user login component' and 'Add user register', So the commmand should be `git commit  -m 'feat: user login' -m 'Add user login component' -m 'Add user register'`. Notice: If there are multi details, use '-m' tag for each detail."
       require("CopilotChat").setup({
         prompts = {
           Explain = {
@@ -120,11 +122,11 @@ return {
             end,
           },
           CommitCli = {
-            prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be two messages: title and description. Wrap the tilte and description to a command like `git commit -m {title} -m {description}`. For example: You got title is 'feat: user login' and description is 'Add user login component', So the commmand should be `git commit  -m 'feat: user login' -m 'Add user login component'`",
+            prompt = commitCliPrompt,
             selection = select.gitdiff,
           },
           CommitStagedCli = {
-            prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be two messages: title and description. Wrap the tilte and description to a command like `git commit -m {title} -m {description}`. For example: You got title is 'feat: user login' and description is 'Add user login component', So the commmand should be `git commit  -m 'feat: user login' -m 'Add user login component'`.",
+            prompt = commitCliPrompt,
             selection = function(source)
               return select.gitdiff(source, true)
             end,
