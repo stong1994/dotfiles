@@ -95,6 +95,9 @@ return {
               -- see config.lua for implementation
             end,
           },
+          Generate = {
+            prompt = "/COPILOT_GENERATE Generate code based on the active selection comment.",
+          },
           Fix = {
             prompt = "/COPILOT_GENERATE There is a problem in this code. Rewrite the code to show it with the bug fixed.",
           },
