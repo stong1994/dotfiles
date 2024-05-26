@@ -219,7 +219,7 @@ return {
           -- "bashls",
           "marksman",
           "solargraph",
-          -- "golangci_lint_ls",
+          "golangci_lint_ls",
           "gopls",
           -- "cucumber_language_server",
         },
@@ -227,38 +227,48 @@ return {
           lsp.default_setup,
           lua_ls = function()
             local lua_opts = lsp.nvim_lua_ls()
+            lua_opts.on_init = function(client)
+              local path = client.workspace_folders[1].name
+              if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+                return
+              end
+              client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+                runtime = {
+                  version = "LuaJIT",
+                },
+                workspace = {
+                  checkThirdParty = false,
+                  library = {
+                    vim.env.VIMRUNTIME,
+                  },
+                },
+              })
+            end
+            lua_opts.settings = {
+              Lua = {},
+            }
             require("lspconfig").lua_ls.setup(lua_opts)
           end,
-        },
-      })
-      require("lspconfig").lua_ls.setup({
-        on_init = function(client)
-          local path = client.workspace_folders[1].name
-          if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-            return
-          end
-          client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-            runtime = {
-              -- Tell the language server which version of Lua you're using
-              -- (most likely LuaJIT in the case of Neovim)
-              version = "LuaJIT",
-            },
-            -- Make the server aware of Neovim runtime files
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                vim.env.VIMRUNTIME,
-                -- Depending on the usage, you might want to add additional paths here.
-                -- "${3rd}/luv/library"
-                -- "${3rd}/busted/library",
+          gopls = function()
+            require("lspconfig").gopls.setup({
+              settings = {
+                gopls = {
+                  analyses = {
+                    unusedparams = true,
+                  },
+                  staticcheck = true,
+                  codelenses = {
+                    generate = true, -- Enable/disable the `generate` codelens.
+                    gc_details = true, -- Enable/disable the `gc_details` codelens.
+                    regenerate_cgo = true, -- Enable/disable the `regenerate_cgo` codelens.
+                    tidy = true, -- Enable/disable the `tidy` codelens.
+                    upgrade_dependency = true, -- Enable/disable the `upgrade_dependency` codelens.
+                    vendor = true, -- Enable/disable the `vendor` codelens.
+                  },
+                },
               },
-              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-              -- library = vim.api.nvim_get_runtime_file("", true)
-            },
-          })
-        end,
-        settings = {
-          Lua = {},
+            })
+          end,
         },
       })
     end,

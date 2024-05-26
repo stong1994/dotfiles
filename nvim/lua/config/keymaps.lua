@@ -37,7 +37,7 @@ keymap.default_map_n("<tab-p>", ":tabprev<Return>", { desc = "Last tab" })
 keymap.default_map_n("=", [[<cmd>vertical resize +5<cr>]], { desc = "increase window vertical size" }) -- make the window biger vertically
 keymap.default_map_n("-", [[<cmd>vertical resize -5<cr>]], { desc = "decrease window vertical size" }) -- make the window smaller vertically
 keymap.default_map_n("+", [[<cmd>horizontal resize +2<cr>]], { desc = "increase window horizontal size" }) -- make the window bigger horizontally by pressing shift and =
-keymap.default_map_n("-", [[<cmd>horizontal resize -2<cr>]], { desc = "decrease window horizontal size" }) -- make the window smaller horizontally by pressing shift and -
+keymap.default_map_n("_", [[<cmd>horizontal resize -2<cr>]], { desc = "decrease window horizontal size" }) -- make the window smaller horizontally by pressing shift and -
 
 --  Select Window
 keymap.default_map_n("<C-h>", "<C-w>h", { desc = "Switch to left window" })

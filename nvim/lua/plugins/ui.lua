@@ -59,18 +59,21 @@ return {
         opts = { skip = true }, -- no show "No infomation available"
       })
       opts.presets.lsp_doc_border = true
+      opts.timeout = 10000 -- not works
     end,
   },
   -- update notify time
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      timeout = 5000,
-    },
-    config = function()
-      require("notify").setup()
-    end,
-  },
+  -- {
+  --   "rcarriga/nvim-notify",
+  --   opts = {
+  --     timeout = 3000,
+  --   },
+  --   config = function()
+  --     require("notify").setup({
+  --       timeout = 3000,
+  --     })
+  --   end,
+  -- },
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
