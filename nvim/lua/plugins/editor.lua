@@ -1,19 +1,6 @@
 local keymap = require("stong.utils.keymap")
 
 return {
-  {
-    enabled = false,
-    "folke/flash.nvim",
-    ---@type Flash.Config
-    opts = {
-      search = {
-        forward = true,
-        multi_window = false,
-        wrap = false,
-        incremental = true,
-      },
-    },
-  },
   -- {
   --   "nvim-telescope/telescope-file-browser.nvim",
   --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -39,7 +26,6 @@ return {
       },
     },
   },
-
   {
     "dinhhuy258/git.nvim",
     event = "BufReadPre",
@@ -456,7 +442,7 @@ return {
         keymap.default_map_n(";yf", "<cmd>FzfxFiles put<cr>", { desc = "Find files by yank text" })
         keymap.default_map_n(";lf", "<cmd>FzfxFiles resume<cr>", { desc = "Find files by resume last" })
         -- buffers
-        keymap.default_map_n(";b", "<cmd>FzfxBuffers<cr>", { desc = "Find buffers" })
+        keymap.default_map_n(";bb", "<cmd>FzfxBuffers<cr>", { desc = "Find buffers" })
         -- live grep
         keymap.default_map_n(";r", "<cmd>FzfxLiveGrep<cr>", { desc = "Live grep" })
         keymap.default_map_x(";r", "<cmd>FzfxLiveGrep visual<cr>", { desc = "Live grep" })
