@@ -371,7 +371,8 @@ return {
       dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
 
       -- specify version to avoid break changes
-      version = "v6.*",
+      -- version = "v6.*",
+      branch = "main",
 
       config = function()
         require("fzfx").setup({

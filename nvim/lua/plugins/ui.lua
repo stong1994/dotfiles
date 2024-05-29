@@ -84,11 +84,27 @@ return {
       },
     },
   },
+  -- hightlight with lsp
+  {
+    "nvim-treesitter/nvim-treesitter-refactor",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        refactor = {
+          highlight_definitions = {
+            enable = true,
+            -- Set to false if you have an `updatetime` of ~100.
+            clear_on_cursor_move = true,
+          },
+          highlight_current_scope = { enable = true },
+        },
+      })
+    end,
+  },
   -- filename
   -- use this when bufferline.mode = tabs
   {
     "b0o/incline.nvim",
-    dependencies = { "craftzdog/solarized-osaka.nvim" },
+    dependencies = { "craftzdog/solarized-osaka.nvim", "RREthy/vim-illuminate" },
     event = "BufReadPre",
     priority = 1200,
     config = function()
@@ -107,6 +123,9 @@ return {
             Folded = { guibg = colors.violet500 },
             CursorLineFolded = { guibg = colors.violet300 },
             DiagnosticSignError = { guifg = colors.magenta900 },
+            TSCurrentScope = { guibg = colors.green700 },
+            TSDefinitionUsage = { guibg = colors.orange },
+            TSDefinition = { guibg = colors.magenta },
           },
         },
         window = { margin = { vertical = 0, horizontal = 1 } },
