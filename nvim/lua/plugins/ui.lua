@@ -104,7 +104,7 @@ return {
   -- use this when bufferline.mode = tabs
   {
     "b0o/incline.nvim",
-    dependencies = { "craftzdog/solarized-osaka.nvim", "RREthy/vim-illuminate" },
+    dependencies = { "craftzdog/solarized-osaka.nvim" },
     event = "BufReadPre",
     priority = 1200,
     config = function()
@@ -123,9 +123,10 @@ return {
             Folded = { guibg = colors.violet500 },
             CursorLineFolded = { guibg = colors.violet300 },
             DiagnosticSignError = { guifg = colors.magenta900 },
-            TSCurrentScope = { guibg = colors.green700 },
+            TSCurrentScope = { guibg = colors.base02 },
             TSDefinitionUsage = { guibg = colors.orange },
             TSDefinition = { guibg = colors.magenta },
+            LspInlayHint = { guifg = "#9DA9A0" },
           },
         },
         window = { margin = { vertical = 0, horizontal = 1 } },
@@ -282,5 +283,11 @@ return {
     --     },
     --   })
     -- end,
+  },
+  {
+    "NStefan002/screenkey.nvim",
+    cmd = "Screenkey",
+    version = "*",
+    config = true,
   },
 }

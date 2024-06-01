@@ -245,7 +245,13 @@ return {
               })
             end
             lua_opts.settings = {
-              Lua = {},
+              Lua = {
+                hint = {
+                  enable = true,
+                  arrayIndex = "Enable",
+                  setType = true,
+                },
+              },
             }
             require("lspconfig").lua_ls.setup(lua_opts)
           end,
@@ -264,6 +270,11 @@ return {
                     tidy = true, -- Enable/disable the `tidy` codelens.
                     upgrade_dependency = true, -- Enable/disable the `upgrade_dependency` codelens.
                     vendor = true, -- Enable/disable the `vendor` codelens.
+                  },
+                  ["ui.inlayhint.hints"] = {
+                    compositeLiteralFields = true,
+                    constantValues = true,
+                    parameterNames = true,
                   },
                 },
               },

@@ -154,6 +154,8 @@ kitten themes
 | shift+command + b     | move window backward(not work)  |                |
 | shift+command + f     | move window forward             |                |
 | shift+command + k     | move window top                 |                |
+| shift+command + l     | decrease background opicity     |                |
+| shift+command + m     | increase background opicity     |                |
 
 ## Base Tool
 
@@ -166,3 +168,9 @@ kitten themes
 - [rg](https://github.com/BurntSushi/ripgrep) - A tool that search file contents for a regex pattern.
 
 -
+
+## Other
+
+| Command         | Description                           |
+| --------------- | :------------------------------------ |
+| :map {shortkey} | find plugins that setted the shortkey |

@@ -83,7 +83,7 @@ return {
     config = function()
       local select = require("CopilotChat.select")
       local commitCliPrompt =
-        "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be multi messages: title and details. Wrap the tilte and details to a command like `git commit -m {title} -m {detail1} -m {detail2}`. For example: You got title is 'feat: user login' and details are 'Add user login component' and 'Add user register', So the commmand should be `git commit  -m 'feat: user login' -m 'Add user login component' -m 'Add user register'`. Notice: If there are multi details, use '-m' tag for each detail."
+        "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be multi messages: title and details. Wrap the tilte and details to a command like `git commit -m {title} -m '- {detail1}' -m '- {detail2}'`. For example: You got title is 'feat: user login' and details are 'Add user login component' and 'Add user register', So the commmand should be `git commit  -m 'feat: user login' -m '- Add user login component' -m '- Add user register'`. Notice: If there are multi details, use '-m' tag for each detail."
       require("CopilotChat").setup({
         prompts = {
           Explain = {
@@ -103,6 +103,10 @@ return {
           },
           Optimize = {
             prompt = "/COPILOT_GENERATE Optimize the selected code to improve performance and readablilty.",
+          },
+          OptimizeDoc = {
+            prompt = "/COPILOT_GENERATE Optimize the doc to improve readablilty.",
+            selection = select.buffer,
           },
           Docs = {
             prompt = "/COPILOT_GENERATE Please add documentation comment for the selection.",

@@ -13,7 +13,7 @@ M.map = function(mode, lhs, rhs, opts)
 end
 
 M.default_map = function(mode, lhs, rhs, opts)
-  M.map(mode, lhs, rhs, table.insert({ noremap = true, silent = true }, opts))
+  M.map(mode, lhs, rhs, vim.tbl_deep_extend("force", { noremap = true, silent = true }, opts or {}))
 end
 
 M.default_map_n = function(lhs, rhs, opts)

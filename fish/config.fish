@@ -16,20 +16,22 @@ alias autodev '/Users/stong/Project/Personal/dev_helper/autodev/autodev.sh'
 alias ghcs "gh copilot suggest -t shell"
 alias ghcg "gh copilot suggest -t git"
 alias ghce "gh copilot explain"
-alias go. "go run ."
-alias gom "go run main.go"
+alias gr. "go run ."
+alias grm "go run main.go"
 
 set -gx EDITOR nvim
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 set -gx GOBIN "$HOME/go/bin/"
 set -gx LS_COLORS "$(vivid generate snazzy)" # colorized output of `tree`,`fd`..
+set -gx LANG "en_US.UTF-8"
 
 fish_add_path "$HOME/ghq/github.com/stong1994/ghq"
 fish_add_path "$HOME/Project/Github/github.com/Raghav-rv28/kitty-sesh"
 fish_add_path "/Applications/kitty.app/Contents/MacOS/"
 fish_add_path "$HOME/.local/share/bob/nvim-bin"
 fish_add_path $GOBIN
+fish_add_path "/opt/homebrew/opt/node@20/bin"
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
@@ -38,3 +40,5 @@ end
 
 # color scheme
 starship init fish | source
+# private config
+source $HOME/.config/fish/private.fish

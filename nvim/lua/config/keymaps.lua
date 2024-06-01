@@ -77,3 +77,7 @@ keymap.default_map_n("<A-CR>", '<Cmd>exe winheight(0)/3."split" | term<CR>', { d
 -- end, { desc = "toggle all term", noremap = true })
 keymap.default_map_n("<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>") -- auto code if err .. in go
 keymap.default_map_n("<leader>ep", "oif err != nil {<CR>}<Esc>Opanic(err)<Esc>")
+
+keymap.default_map_n("gh", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "toggle lsp inlay hint" })
