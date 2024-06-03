@@ -157,7 +157,7 @@ return {
       --   desc = "Lsp Goto Reference by telescope",
       -- },
       {
-        "sf",
+        "<leader>sf",
         function()
           local telescope = require("telescope")
 

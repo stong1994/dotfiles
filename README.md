@@ -49,6 +49,22 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | <leader>gc | git commits                   | "              |
 | <leader>gf | current file's commit history | lazygit        |
 
+### lsp
+
+| Shortcut    | Description                    | implementation |
+| ----------- | :----------------------------- | -------------- |
+| gd          | list defination                | fzfx.nvim      |
+| gr          | list reference                 | fzfx.nvim      |
+| gi          | list implementation            | fzfx.nvim      |
+| gt          | list defination                | fzfx.nvim      |
+| gci         | list incoming calls            | fzfx.nvim      |
+| gco         | list outcoming calls           | fzfx.nvim      |
+| gh          | inlay hint switcher            | lsp            |
+| ;e          | list diagnostics               | fzfx.nvim      |
+| ;s          | list function name, variables  | telescope      |
+| ctrl-h      | show signature info in model i | lsp            |
+| <leader>vrn | rename symbol                  | lsp            |
+
 ### editor
 
 | Shortcut     | Description                                               | implementation            |
@@ -67,16 +83,11 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | w            | forward next word like w but can recognize cojoined words | chrisgrieser/nvim-spider  |
 | e            | forward next word like e but can recognize cojoined words | chrisgrieser/nvim-spider  |
 | b            | forward next word like b but can recognize cojoined words | chrisgrieser/nvim-spider  |
-| <leader>sf   | tag all words to jump                                     | phaazon/hop.nvim          |
 | option-left  | move to left (todo option-l not work)                     | mini.move                 |
 | option-right | move to right                                             | mini.move                 |
 | option-up    | move to up                                                | mini.move                 |
 | option-down  | move to down                                              | mini.move                 |
 | <leader>cs   | symbol outline                                            |                           |
-| gd           | goto defination                                           | telescope                 |
-| gr           | goto reference                                            | telescope                 |
-| ;e           | goto diagnostics                                          | telescope                 |
-| ;s           | list function name, variables                             | telescope                 |
 | ;;           | resume telescope command                                  | telescope                 |
 | ctrl-u       | scroll up                                                 |                           |
 | ctrl-n       | scroll down                                               |                           |
@@ -85,6 +96,14 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | <leader>S    | search and replace window toggle                          | nvim-pack/nvim-spectre    |
 | <leader>sw   | search and replace current word                           | nvim-pack/nvim-spectre    |
 | <leader>sp   | search and replace current word in current file           | nvim-pack/nvim-spectre    |
+| yp           | copy file path                                            |                           |
+| yd           | copy directory path                                       |                           |
+| yf           | copy file name                                            |                           |
+| s            | quick jump                                                | flash.nvim                |
+| S            | quick jump with treesitter                                | flash.nvim                |
+| sf           | tag all words to jump                                     | phaazon/hop.nvim          |
+| fi           | fold close                                                |                           |
+| fo           | fold open                                                 |                           |
 
 ### windows
 
@@ -107,18 +126,31 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 
 | Shortcut      | Description                                                                  | implementation                |
 | ------------- | :--------------------------------------------------------------------------- | ----------------------------- |
-| ;f            | find files under root                                                        | telescope.nvim                |
-| ;r            | find words in files under root                                               | telescope.nvim                |
-| ;br           | find words in buffers                                                        | telescope.nvim                |
+| ;f            | find files under root                                                        | fzfx.nvim                     |
+| ;wf           | find files by cursor word                                                    | fzfx.nvim                     |
+| ;yf           | find files by yank text                                                      | fzfx.nvim                     |
+| ;lf           | find files by resume text                                                    | fzfx.nvim                     |
+| ;r            | live grap by words under root                                                | fzfx.nvim                     |
+| ;wr           | live grap by cursor word                                                     | fzfx.nvim                     |
+| ;yr           | live grap by yank text                                                       | fzfx.nvim                     |
+| ;lr           | live grap by resume text                                                     | fzfx.nvim                     |
+| ;br           | live grap buffers                                                            | fzfx.nvim                     |
+| ;gs           | Find git changed fields                                                      | fzfx.nvim                     |
+| ;gb           | Search git branches                                                          | fzfx.nvim                     |
+| ;gc           | Search git commits                                                           | fzfx.nvim                     |
+| ;gm           | Search git blame                                                             | fzfx.nvim                     |
 | ;p            | find projects                                                                | GnikDroy/projections.nvim     |
-| ;b            | find buffers                                                                 | telescope.nvim                |
+| ;bb           | find buffers                                                                 | fzfx.nvim                     |
+| ;c            | Search vim commands                                                          | fzfx.nvim                     |
+| ;km           | Search vim keymaps                                                           | fzfx.nvim                     |
+| ;mk           | Search vim marks                                                             | fzfx.nvim                     |
+| ;p            | File explorer                                                                | fzfx.nvim                     |
 | [b            | last buffers                                                                 |                               |
 | ]b            | next buffers                                                                 |                               |
 | ;e            | Lists Diagnostics for all open buffers or a specific buffer                  | telescope.nvim                |
 | ;;            | resume the previous telescope picker                                         | telescope.nvim                |
-| ;s            | Lists Function names, variables                                              | telescope.nvim                |
 | ;t            | Lists available help tags and opens a new window with the relevant help info | telescope.nvim                |
-| sf            | Open File Browser with the path of the current buffer                        | telescope.vim                 |
+| <leader>sf    | Open File Browser with the path of the current buffer                        | telescope.vim                 |
 | <leader>e     | explore neotree(root dir)                                                    |                               |
 | <leader>E     | explore neotree(cmd dir)                                                     |                               |
 | <leader>H     | add file to harpoon                                                          | ThePrimeagen/harpoon          |

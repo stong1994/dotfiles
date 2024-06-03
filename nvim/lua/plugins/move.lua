@@ -44,12 +44,51 @@ return {
   },
   {
     "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
     opts = {
       search = {
         forward = true,
         multi_window = false,
         wrap = false,
         incremental = true,
+        mode = function(str)
+          return "\\<" .. str
+        end,
+      },
+    },
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
       },
     },
   },
@@ -64,7 +103,7 @@ return {
       -- vim.keymap.set("n", "<leader>sfc", function()
       --   hop.hint_char1({ current_line_only = true, hint_offset = -1 })
       -- end, { remap = true, desc = "Tag chart in the current line" })
-      vim.keymap.set("n", "<leader>sf", function()
+      vim.keymap.set("n", "sf", function()
         hop.hint_words({ multi_windows = true, current_line_only = false })
       end, { remap = true, desc = "Tag all words in all windows" })
     end,
