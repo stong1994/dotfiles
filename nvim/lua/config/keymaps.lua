@@ -22,8 +22,8 @@ keymap.default_map_n("[b", [[<cmd>bprevious<cr>]])
 -- Quick Move
 keymap.default_map_n("J", "10j")
 keymap.default_map_n("K", "10k")
-keymap.default_map_n("<S-l>", "$", { desc = "move end of line" })
-keymap.default_map_n("<S-h>", "^", { desc = "move begin of line" })
+keymap.default_map({ "n", "x", "o" }, "<S-l>", "$", { desc = "move end of line" })
+keymap.default_map({ "n", "x", "o" }, "<S-h>", "^", { desc = "move begin of line" })
 
 -- Select all
 keymap.default_map_n("<C-a>", "gg<S-v>G", { desc = "Select all" })
@@ -97,3 +97,4 @@ end, { desc = "Copy file name" })
 
 keymap.default_map_n("fo", "<cmd>foldopen<CR>", { desc = "Open fold" })
 keymap.default_map_n("fi", "<cmd>foldclose<CR>", { desc = "Close fold" })
+keymap.default_map_n("sk", "<cmd>Screenkey<CR>", { desc = "ScreenKey" })

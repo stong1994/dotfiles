@@ -70,6 +70,7 @@ return {
           ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
         }),
         sources = cmp.config.sources({
+          { name = "codeium" },
           -- Copilot Source
           { name = "copilot", group_index = 2 },
           { name = "nvim_lsp" },
@@ -86,7 +87,11 @@ return {
           format = lspkind.cmp_format({
             mode = "symbol",
             max_width = 50,
-            symbol_map = { Copilot = "" },
+            ellipsis_char = "...",
+            symbol_map = {
+              Copilot = "",
+              Codeium = "󰘦 ",
+            },
           }),
         },
       })
