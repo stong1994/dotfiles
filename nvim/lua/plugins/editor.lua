@@ -458,7 +458,7 @@ return {
         keymap.default_map_n(";gm", "<cmd>FzfxGBlame<cr>", { desc = "Search git blame" })
         -- lsp
         keymap.default_map_n(";e", "<cmd>FzfxLspDiagnostics<cr>", { desc = "Search lsp diagnostics" })
-        keymap.default_map_n("gd", "<cmd>FzfxLspDefinitions<cr>", { desc = "Goto lsp definition" })
+        -- keymap.default_map_n("gd", "<cmd>FzfxLspDefinitions<cr>", { desc = "Goto lsp definition" }) TODO: not support dart, but lsp-zero supports
         keymap.default_map_n("gr", "<cmd>FzfxLspReferences<cr>", { desc = "Goto lsp reference" })
         keymap.default_map_n("gi", "<cmd>FzfxLspImplementations<cr>", { desc = "Goto lsp Implementations" })
         keymap.default_map_n("gt", "<cmd>FzfxLspTypeDefinitions<cr>", { desc = "Goto lsp type definition" })

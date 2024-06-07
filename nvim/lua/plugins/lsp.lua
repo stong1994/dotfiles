@@ -18,6 +18,11 @@ return {
         },
       },
     },
+    config = function()
+      require("lspconfig").dartls.setup({
+        cmd = { "dart", "language-server", "--protocol=lsp" },
+      })
+    end,
   },
   -- then: setup supertab in cmp
   {
@@ -165,7 +170,8 @@ return {
 
     config = function()
       local lsp = require("lsp-zero")
-      local telescope_builtin = require("telescope.builtin")
+      -- local telescope_builtin = require("telescope.builtin")
+      -- lsp.setup_servers({ "dartls", force = true })
 
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
@@ -173,9 +179,9 @@ return {
         -- vim.keymap.set("n", "gr", function()
         --   vim.lsp.buf.references()
         -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Reference" }))
-        -- vim.keymap.set("n", "gd", function()
-        --   vim.lsp.buf.definition()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
+        vim.keymap.set("n", "gd", function()
+          vim.lsp.buf.definition()
+        end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
         vim.keymap.set("n", "gk", function()
           vim.lsp.buf.hover()
         end, vim.tbl_deep_extend("force", opts, { desc = "LSP Hover" }))
