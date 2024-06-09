@@ -26,3 +26,15 @@ vim.api.nvim_create_autocmd({ "TermOpen", "WinEnter" }, {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "copilot-*",
+  callback = function()
+    vim.opt_local.relativenumber = true
+
+    -- ccl to print last response
+    vim.keymap.set("n", "ccl", function()
+      print(require("CopilotChat").response())
+    end, { buffer = true, remap = true })
+  end,
+})

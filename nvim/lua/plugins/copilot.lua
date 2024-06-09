@@ -85,6 +85,11 @@ return {
       local commitCliPrompt =
         "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be multi messages: title and details. Wrap the tilte and details to a command like `git commit -m {title} -m '- {detail1}' -m '- {detail2}'`. For example: You got title is 'feat: user login' and details are 'Add user login component' and 'Add user register', So the commmand should be `git commit  -m 'feat: user login' -m '- Add user login component' -m '- Add user register'`. Notice: If there are multi details, use '-m' tag for each detail."
       require("CopilotChat").setup({
+        question_header = "## Stong ", -- Header to use for user questions
+        answer_header = "## Copilot ", -- Header to use for AI answers
+        show_help = false,
+        context = "buffers",
+        history_path = vim.fn.stdpath("data") .. "/copilotchat_history", -- Default path to stored history
         prompts = {
           Explain = {
             prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text.",
@@ -137,6 +142,40 @@ return {
             selection = function(source)
               return select.gitdiff(source, true)
             end,
+          },
+        },
+        mappings = {
+          complete = {
+            detail = "Use @<Tab> or /<Tab> for options.",
+            insert = "<Tab>",
+          },
+          close = {
+            normal = "q",
+            insert = "<C-c>",
+          },
+          reset = {
+            normal = "<C-r>",
+            insert = "<C-r>",
+          },
+          submit_prompt = {
+            normal = "<CR>",
+            insert = "<C-m>",
+          },
+          accept_diff = {
+            normal = "<C-y>",
+            insert = "<C-y>",
+          },
+          yank_diff = {
+            normal = "ccy",
+          },
+          show_diff = {
+            normal = "ccd",
+          },
+          show_system_prompt = {
+            normal = "ccp",
+          },
+          show_user_selection = {
+            normal = "ccs",
           },
         },
       })
