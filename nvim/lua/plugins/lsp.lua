@@ -1,3 +1,40 @@
+local mylsp = function(client, bufnr)
+  local opts = { buffer = bufnr, remap = false }
+
+  -- vim.keymap.set("n", "gr", function()
+  --   vim.lsp.buf.references()
+  -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Reference" }))
+  vim.keymap.set("n", "gd", function()
+    vim.lsp.buf.definition()
+  end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
+  vim.keymap.set("n", "gk", function()
+    vim.lsp.buf.hover()
+  end, vim.tbl_deep_extend("force", opts, { desc = "LSP Hover" }))
+  -- vim.keymap.set("n", "<leader>vws", function()
+  --   vim.lsp.buf.workspace_symbol()
+  -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Workspace Symbol" }))
+  -- vim.keymap.set("n", "<leader>vd", function()
+  --   vim.diagnostic.setloclist()
+  -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Show Diagnostics" }))
+  -- vim.keymap.set("n", "[d", function()
+  --   vim.diagnostic.goto_next()
+  -- end, vim.tbl_deep_extend("force", opts, { desc = "Next Diagnostic" }))
+  -- vim.keymap.set("n", "]d", function()
+  --   vim.diagnostic.goto_prev()
+  -- end, vim.tbl_deep_extend("force", opts, { desc = "Previous Diagnostic" }))
+  -- vim.keymap.set("n", "<leader>vca", function()
+  --   vim.lsp.buf.code_action()
+  -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Code Action" }))
+  -- vim.keymap.set("n", "<leader>vrr", function()
+  --   vim.lsp.buf.references()
+  -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP References" }))
+  vim.keymap.set("n", "<leader>vrn", function()
+    vim.lsp.buf.rename()
+  end, vim.tbl_deep_extend("force", opts, { desc = "LSP Rename" }))
+  vim.keymap.set("i", "<C-h>", function()
+    vim.lsp.buf.signature_help()
+  end, vim.tbl_deep_extend("force", opts, { desc = "LSP Signature Help" }))
+end
 return {
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
@@ -19,9 +56,9 @@ return {
       },
     },
     config = function()
-      require("lspconfig").dartls.setup({
-        cmd = { "dart", "language-server", "--protocol=lsp" },
-      })
+      -- require("lspconfig").dartls.setup({
+      --   cmd = { "dart", "language-server", "--protocol=lsp" },
+      -- })
     end,
   },
   -- then: setup supertab in cmp
@@ -171,45 +208,8 @@ return {
     config = function()
       local lsp = require("lsp-zero")
       -- local telescope_builtin = require("telescope.builtin")
-      -- lsp.setup_servers({ "dartls", force = true })
 
-      lsp.on_attach(function(client, bufnr)
-        local opts = { buffer = bufnr, remap = false }
-
-        -- vim.keymap.set("n", "gr", function()
-        --   vim.lsp.buf.references()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Reference" }))
-        vim.keymap.set("n", "gd", function()
-          vim.lsp.buf.definition()
-        end, vim.tbl_deep_extend("force", opts, { desc = "LSP Goto Definition" }))
-        vim.keymap.set("n", "gk", function()
-          vim.lsp.buf.hover()
-        end, vim.tbl_deep_extend("force", opts, { desc = "LSP Hover" }))
-        -- vim.keymap.set("n", "<leader>vws", function()
-        --   vim.lsp.buf.workspace_symbol()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Workspace Symbol" }))
-        -- vim.keymap.set("n", "<leader>vd", function()
-        --   vim.diagnostic.setloclist()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Show Diagnostics" }))
-        -- vim.keymap.set("n", "[d", function()
-        --   vim.diagnostic.goto_next()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "Next Diagnostic" }))
-        -- vim.keymap.set("n", "]d", function()
-        --   vim.diagnostic.goto_prev()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "Previous Diagnostic" }))
-        -- vim.keymap.set("n", "<leader>vca", function()
-        --   vim.lsp.buf.code_action()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP Code Action" }))
-        -- vim.keymap.set("n", "<leader>vrr", function()
-        --   vim.lsp.buf.references()
-        -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP References" }))
-        vim.keymap.set("n", "<leader>vrn", function()
-          vim.lsp.buf.rename()
-        end, vim.tbl_deep_extend("force", opts, { desc = "LSP Rename" }))
-        vim.keymap.set("i", "<C-h>", function()
-          vim.lsp.buf.signature_help()
-        end, vim.tbl_deep_extend("force", opts, { desc = "LSP Signature Help" }))
-      end)
+      lsp.on_attach(mylsp)
 
       require("mason").setup({})
       require("mason-lspconfig").setup({
@@ -300,5 +300,24 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = true, -- or `opts = {}`
     lazy = true,
+  },
+
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    config = function()
+      require("flutter-tools").setup({
+        lsp = {
+          color = {
+            enabled = true,
+            on_attach = mylsp,
+          },
+        },
+      })
+    end,
   },
 }
