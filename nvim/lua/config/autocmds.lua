@@ -38,3 +38,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end, { buffer = true, remap = true })
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.dart",
+  callback = function(e)
+    vim.lsp.buf.format({ bufnr = e.buf })
+  end,
+})
