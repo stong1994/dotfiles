@@ -49,7 +49,10 @@ return {
     ---@diagnostic disable-next-line: missing-fields
     opts = {
       highlight = { enable = true },
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        disable = { "dart" },
+      },
       ensure_installed = {
         "bash",
         "c",
@@ -78,6 +81,7 @@ return {
         "markdown",
         "rust",
         "http",
+        "dart",
       },
       -- something copied from https://github.com/ray-x/go.nvim?tab=readme-ov-file#text-object
       incremental_selection = {
@@ -129,6 +133,7 @@ return {
           enable = true,
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
+            -- Must use in v model
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
