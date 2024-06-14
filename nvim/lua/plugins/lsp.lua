@@ -333,7 +333,11 @@ return {
           on_attach = mylsp,
           default_settings = {
             -- rust-analyzer language server configuration
-            ["rust-analyzer"] = {},
+            ["rust-analyzer"] = {
+              check = {
+                command = "clippy",
+              },
+            },
           },
         },
         -- DAP configuration
