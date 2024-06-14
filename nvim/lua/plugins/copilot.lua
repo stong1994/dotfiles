@@ -44,7 +44,7 @@ return {
     keys = {
       -- Quick chat with Copilot
       {
-        "ccq",
+        "ccc",
         function()
           local input = vim.fn.input("Quick Chat: ")
           if input ~= "" then
