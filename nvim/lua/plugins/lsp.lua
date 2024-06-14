@@ -22,13 +22,13 @@ local mylsp = function(client, bufnr)
   -- vim.keymap.set("n", "]d", function()
   --   vim.diagnostic.goto_prev()
   -- end, vim.tbl_deep_extend("force", opts, { desc = "Previous Diagnostic" }))
-  vim.keymap.set("n", "<leader>vca", function()
+  vim.keymap.set("n", "vca", function()
     vim.lsp.buf.code_action()
   end, vim.tbl_deep_extend("force", opts, { desc = "LSP Code Action" }))
   -- vim.keymap.set("n", "<leader>vrr", function()
   --   vim.lsp.buf.references()
   -- end, vim.tbl_deep_extend("force", opts, { desc = "LSP References" }))
-  vim.keymap.set("n", "<leader>vrn", function()
+  vim.keymap.set("n", "vrn", function()
     vim.lsp.buf.rename()
   end, vim.tbl_deep_extend("force", opts, { desc = "LSP Rename" }))
   vim.keymap.set("i", "<C-h>", function()
@@ -112,7 +112,7 @@ return {
           ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
         }),
         sources = cmp.config.sources({
-          { name = "codeium" },
+          -- { name = "codeium" },
           -- Copilot Source
           { name = "copilot", group_index = 2 },
           { name = "nvim_lsp" },
@@ -223,7 +223,7 @@ return {
           "jsonls",
           "html",
           "elixirls",
-          "tailwindcss",
+          -- "tailwindcss",
           "tflint",
           "pylsp",
           "dockerls",
@@ -318,6 +318,27 @@ return {
           },
         },
       })
+    end,
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    lazy = false, -- This plugin is already lazy
+    config = function()
+      vim.g.rustaceanvim = {
+        -- Plugin configuration
+        tools = {},
+        -- LSP configuration
+        server = {
+          on_attach = mylsp,
+          default_settings = {
+            -- rust-analyzer language server configuration
+            ["rust-analyzer"] = {},
+          },
+        },
+        -- DAP configuration
+        dap = {},
+      }
     end,
   },
 }

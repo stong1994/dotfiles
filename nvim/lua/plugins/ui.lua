@@ -79,7 +79,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, 2, LazyVim.lualine.cmp_source("codeium"))
+      -- table.insert(opts.sections.lualine_x, 2, LazyVim.lualine.cmp_source("codeium"))
 
       opts.options.theme = "solarized_dark"
     end,
@@ -132,6 +132,7 @@ return {
             TSDefinitionUsage = { guibg = colors.orange },
             TSDefinition = { guibg = colors.magenta },
             LspInlayHint = { guifg = "#9DA9A0" },
+            EndOfBuffer = { guifg = "#9DA9A0" },
           },
         },
         window = { margin = { vertical = 0, horizontal = 1 } },
