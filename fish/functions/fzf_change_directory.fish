@@ -13,6 +13,7 @@ end
 function fzf_change_directory
     begin
         echo $HOME/.config
+        fd --type d --max-depth 1 . $HOME/.config
         # todo we use --hidden because we need search the directory with '.git', but with --hidden, we will search with all directory with prefix '.', wait fd to optimize it
         ghq root --all | xargs -I {} fd --type d --max-depth 6 --hidden .git {} | sed 's/\/\.git//'
         $HOME/.local/share/nvim/lazy | xargs -I {} fd --type d --max-depth 4 --hidden .git {} | sed 's/\/\.git//'
