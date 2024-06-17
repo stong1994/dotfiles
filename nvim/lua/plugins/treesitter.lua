@@ -47,8 +47,13 @@ return {
     },
     ---@type TSConfig
     ---@diagnostic disable-next-line: missing-fields
+    ---
+    ignore_install = { "dart" }, -- List of parsers to ignore installing
     opts = {
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        disable = { "dart" },
+      },
       indent = {
         enable = true,
         disable = { "dart" },
