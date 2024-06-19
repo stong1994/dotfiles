@@ -42,3 +42,8 @@ end
 starship init fish | source
 # private config
 source $HOME/.config/fish/private.fish
+
+function fish_title
+    set -q argv[1]; or set argv fish
+    echo (basename (prompt_pwd)): $argv
+end
