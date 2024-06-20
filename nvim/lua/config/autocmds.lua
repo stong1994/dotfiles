@@ -39,9 +39,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.dart",
-  callback = function(e)
-    vim.lsp.buf.format({ bufnr = e.buf })
-  end,
-})
+-- use confom to autoformat
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*.dart",
+--   callback = function(e)
+--     vim.lsp.buf.format({ bufnr = e.buf })
+--   end,
+-- })

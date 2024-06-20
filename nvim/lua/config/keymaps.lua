@@ -14,6 +14,8 @@ keymap.default_map({ "i" }, "jj", "<Esc>", { desc = "replace Esc" })
 
 -- Copy content to the next line
 keymap.default_map_n("<C-p>", "m`o<ESC>p>`", { desc = "Copy content to the next line" })
+-- Copy content to the previous line
+keymap.default_map_n("<S-p>", "m`O<ESC>pkdd>`", { desc = "Copy content to the previous line" })
 
 -- Buffer switch
 keymap.default_map_n("]b", [[<cmd>bnext<cr>]])
