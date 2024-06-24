@@ -58,8 +58,7 @@ return {
     opts = {},
     config = function()
       require("tokyonight").setup({
-        -- use the night style
-        style = "night",
+        style = "moon",
         -- disable italic for functions
         styles = {
           functions = {},
@@ -181,7 +180,6 @@ return {
             LineNrAbove = { guifg = colors.base1 },
             LineNrBelow = { guifg = colors.magenta700 },
             Normal = { guifg = colors.base2 },
-            DiagnosticUnnecessary = { fg = colors.green500 },
             -- CursorLine = { guifg = colors.magenta },
           },
         },
