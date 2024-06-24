@@ -346,10 +346,17 @@ return {
     "mrcjkb/rustaceanvim",
     version = "^4", -- Recommended
     lazy = false, -- This plugin is already lazy
+    dependencies = {
+      "VonHeikemen/lsp-zero.nvim",
+    },
     config = function()
       vim.g.rustaceanvim = {
         -- Plugin configuration
-        tools = {},
+        tools = {
+          hover_actions = {
+            replace_builtin_hover = true,
+          },
+        },
         -- LSP configuration
         server = {
           on_attach = mylsp,
@@ -365,6 +372,7 @@ return {
         -- DAP configuration
         dap = {},
       }
+      vim.keymap.set("n", "K", "10k") -- reset 'K' , it can't remove keymap like lsp-zero
     end,
   },
   {

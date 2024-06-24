@@ -14,16 +14,14 @@ keymap.default_map({ "i" }, "jj", "<Esc>", { desc = "replace Esc" })
 
 -- Copy content to the next line
 keymap.default_map_n("<C-p>", "m`o<ESC>p>`", { desc = "Copy content to the next line" })
--- Copy content to the previous line
-keymap.default_map_n("<S-p>", "m`O<ESC>pkdd>`", { desc = "Copy content to the previous line" })
 
 -- Buffer switch
 keymap.default_map_n("]b", [[<cmd>bnext<cr>]])
 keymap.default_map_n("[b", [[<cmd>bprevious<cr>]])
 
 -- Quick Move
-keymap.default_map_n("J", "10j")
 keymap.default_map_n("K", "10k")
+keymap.default_map_n("J", "10j")
 keymap.default_map({ "n", "x", "o" }, "<S-l>", "$", { desc = "move end of line" })
 keymap.default_map({ "n", "x", "o" }, "<S-h>", "^", { desc = "move begin of line" })
 

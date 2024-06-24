@@ -48,22 +48,27 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | <leader>gb | git blame line                |                |
 | <leader>gc | git commits                   | "              |
 | <leader>gf | current file's commit history | lazygit        |
+| ;gs        | Find git changed fields       | fzfx.nvim      |
+| ;gb        | Search git branches           | fzfx.nvim      |
+| ;gc        | Search git commits            | fzfx.nvim      |
+| ;gm        | Search git blame              | fzfx.nvim      |
 
 ### lsp
 
-| Shortcut    | Description                    | implementation |
-| ----------- | :----------------------------- | -------------- |
-| gd          | list defination                | fzfx.nvim      |
-| gr          | list reference                 | fzfx.nvim      |
-| gi          | list implementation            | fzfx.nvim      |
-| gt          | list defination                | fzfx.nvim      |
-| gci         | list incoming calls            | fzfx.nvim      |
-| gco         | list outcoming calls           | fzfx.nvim      |
-| gh          | inlay hint switcher            | lsp            |
-| ;e          | list diagnostics               | fzfx.nvim      |
-| ;s          | list function name, variables  | telescope      |
-| ctrl-h      | show signature info in model i | lsp            |
-| <leader>vrn | rename symbol                  | lsp            |
+| Shortcut | Description                    | implementation |
+| -------- | :----------------------------- | -------------- |
+| gd       | list defination                | fzfx.nvim      |
+| gr       | list reference                 | fzfx.nvim      |
+| gi       | list implementation            | fzfx.nvim      |
+| gt       | list defination                | fzfx.nvim      |
+| gci      | list incoming calls            | fzfx.nvim      |
+| gco      | list outcoming calls           | fzfx.nvim      |
+| gh       | inlay hint switcher            | lsp            |
+| ;e       | list diagnostics               | fzfx.nvim      |
+| ;s       | list function name, variables  | telescope      |
+| ctrl-h   | show signature info in model i | lsp            |
+| vca      | code action                    | lsp            |
+| vrn      | rename symbol                  | lsp            |
 
 ### editor
 
@@ -73,8 +78,8 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ctrl-i       | go to newer position in jump list                         | :h jumplist               |
 | g;           | go to older position in change list                       | :h jumplist               |
 | g,           | go to newer position in change list                       | :h jumplist               |
-| J            | a keymap to 5j                                            |                           |
-| K            | a keymap to 5k                                            |                           |
+| J            | a keymap to 10j                                           |                           |
+| K            | a keymap to 10k                                           |                           |
 | ctrl-p       | paste to next line                                        |                           |
 | ctrl-a       | copy the whole content of the file                        |                           |
 | ctrl-s       | save the file                                             |                           |
@@ -104,6 +109,8 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | sf           | tag all words to jump                                     | phaazon/hop.nvim          |
 | fi           | fold close                                                |                           |
 | fo           | fold open                                                 |                           |
+| af           | select outter function in v model                         | treesitter                |
+| if           | select inner function in v model                          | treesitter                |
 
 ### windows
 
@@ -135,10 +142,6 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ;yr           | live grap by yank text                                                       | fzfx.nvim                     |
 | ;lr           | live grap by resume text                                                     | fzfx.nvim                     |
 | ;br           | live grap buffers                                                            | fzfx.nvim                     |
-| ;gs           | Find git changed fields                                                      | fzfx.nvim                     |
-| ;gb           | Search git branches                                                          | fzfx.nvim                     |
-| ;gc           | Search git commits                                                           | fzfx.nvim                     |
-| ;gm           | Search git blame                                                             | fzfx.nvim                     |
 | ;p            | find projects                                                                | GnikDroy/projections.nvim     |
 | ;bb           | find buffers                                                                 | fzfx.nvim                     |
 | ;c            | Search vim commands                                                          | fzfx.nvim                     |
