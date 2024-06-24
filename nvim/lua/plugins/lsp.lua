@@ -208,7 +208,7 @@ return {
     config = function()
       local lsp = require("lsp-zero")
       -- local telescope_builtin = require("telescope.builtin")
-
+      -- vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { link = "DiagnosticUnnecessary" })
       lsp.on_attach(mylsp)
 
       require("mason").setup({})
