@@ -83,7 +83,21 @@ return {
     config = function()
       local select = require("CopilotChat.select")
       local commitCliPrompt =
-        "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be multi messages: title and details. Wrap the tilte and details to a command like `git commit -m {title} -m '- {detail1}' -m '- {detail2}'`. For example: You got title is 'feat: user login' and details are 'Add user login component' and 'Add user register', So the commmand should be `git commit  -m 'feat: user login' -m '- Add user login component' -m '- Add user register'`. Notice: If there are multi details, use '-m' tag for each detail."
+        -- "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, There will be multi messages: title and details. Wrap the tilte and details to a command like `git commit -m {title} -m '- {detail1}' -m '- {detail2}'`. For example: You got title is 'feat: user login' and details are 'Add user login component' and 'Add user register', So the commmand should be `git commit  -m 'feat: user login' -m '- Add user login component' -m '- Add user register'`. Notice: If there are multi details, use '-m' tag for each detail."
+        [[Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. So, Your output will be executed directly, so make sure it is executable, and the command's formatter will be `git commit -m '{type}: {title}'`. If the input content is huge, you can add more details with another '-m' tag. The type should follow rules below:
+            - docs: Documentation only changes,
+            - style:Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc),
+            - perf: A code change that improves performance,
+            - test: Adding missing tests or correcting existing tests,
+            - build: Changes that affect the build system or external dependencies,
+            - ci: Changes to our CI configuration files and scripts,
+            - chore: "Other changes that don't modify src or test files",
+            - revert: Reverts a previous commit,
+            - feat: A new feature,
+            - fix: A bug fix, 
+            - refactor: A code change that neither fixes a bug nor adds a feature,
+     ]]
+
       require("CopilotChat").setup({
         question_header = "## Stong ", -- Header to use for user questions
         answer_header = "## Copilot ", -- Header to use for AI answers
@@ -154,8 +168,8 @@ return {
             insert = "<C-c>",
           },
           reset = {
-            normal = "<C-r>",
-            insert = "<C-r>",
+            normal = "<C-r>r",
+            insert = "<C-r>r",
           },
           submit_prompt = {
             normal = "<CR>",
