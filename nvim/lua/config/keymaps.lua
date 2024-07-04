@@ -13,7 +13,7 @@ keymap.default_map_n("<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Last B
 keymap.default_map({ "i" }, "jj", "<Esc>", { desc = "replace Esc" })
 
 -- Copy content to the next line
-keymap.default_map_n("<C-p>", "m`o<ESC>p>`", { desc = "Copy content to the next line" })
+keymap.default_map_n("np", "m`o<ESC>p>`", { desc = "Copy content to the next line" })
 
 -- Buffer switch
 keymap.default_map_n("]b", [[<cmd>bnext<cr>]])
