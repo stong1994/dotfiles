@@ -157,6 +157,9 @@ return {
               return select.gitdiff(source, true)
             end,
           },
+          Translate = {
+            prompt = "Translate the selected text to chinese.",
+          },
         },
         mappings = {
           complete = {
