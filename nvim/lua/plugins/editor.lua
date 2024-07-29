@@ -376,6 +376,11 @@ return {
 
       config = function()
         require("fzfx").setup({
+          debug = {
+            enable = true,
+            console_log = true,
+            file_log = true,
+          },
           users = {
             ls = {
               command = {

@@ -56,6 +56,11 @@ return {
           return "\\<" .. str
         end,
       },
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
     },
     keys = {
       {

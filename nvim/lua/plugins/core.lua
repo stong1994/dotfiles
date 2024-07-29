@@ -130,4 +130,17 @@ return {
   },
   { "folke/lazy.nvim", version = false },
   { "LazyVim/LazyVim", version = false },
+  {
+    "folke/which-key.nvim",
+    -- version = "3.0.0",
+    branch = "main",
+    event = "VeryLazy",
+    opts = {
+      debug = false,
+      disable = {
+        bt = {},
+        ft = { "fzf" },
+      },
+    },
+  },
 }

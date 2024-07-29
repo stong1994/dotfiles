@@ -157,8 +157,11 @@ return {
               return select.gitdiff(source, true)
             end,
           },
-          Translate = {
+          TranslateToChinese = {
             prompt = "Translate the selected text to chinese.",
+          },
+          TranslateToEnglish = {
+            prompt = "Translate the selected text to english.",
           },
         },
         mappings = {
