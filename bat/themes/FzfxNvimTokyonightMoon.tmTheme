@@ -6,9 +6,9 @@
     <key>author</key>
     <string>Lin Rongbin(linrongbin16@outlook.com)</string>
     <key>name</key>
-    <string>FzfxNvimTokyonight</string>
+    <string>FzfxNvimTokyonightMoon</string>
     <key>semanticClass</key>
-    <string>FzfxNvimTokyonight</string>
+    <string>FzfxNvimTokyonightMoon</string>
     <key>colorSpaceName</key>
     <string>sRGB</string>
 
@@ -27,11 +27,11 @@
           <key>lineHighlight</key>
           <string>#2d3f76</string>
           <key>lineDiffAdded</key>
-          <string>#627259</string>
+          <string>#b8db87</string>
           <key>lineDiffModified</key>
-          <string>#485a86</string>
+          <string>#7ca1f2</string>
           <key>lineDiffDeleted</key>
-          <string>#b55a67</string>
+          <string>#e26a75</string>
         </dict>
       </dict>
 
@@ -349,7 +349,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#627259</string>
+          <string>#b8db87</string>
         </dict>
       </dict>
       <dict>
@@ -360,7 +360,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#b55a67</string>
+          <string>#e26a75</string>
         </dict>
       </dict>
       <dict>
@@ -371,7 +371,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#485a86</string>
+          <string>#7ca1f2</string>
         </dict>
       </dict>
       <dict>

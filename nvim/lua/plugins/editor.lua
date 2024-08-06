@@ -369,17 +369,23 @@ return {
     {
       "linrongbin16/fzfx.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
-
-      -- specify version to avoid break changes
-      -- version = "v6.*",
       branch = "main",
 
       config = function()
+        require("nvim-web-devicons").setup()
+        -- Ensure the mock module is set up before fzfx.nvim uses it
+        package.preload["nvim-web-devicons"] = function()
+          require("mini.icons").mock_nvim_web_devicons()
+          local l = package.loaded["nvim-web-devicons"]
+          return l
+        end
+        vim.g.fzfx_disable_buffer_previewer = 0
+        vim.g.fzfx_enable_bat_theme_autogen = 1
         require("fzfx").setup({
           debug = {
-            enable = true,
+            enable = false,
             console_log = true,
-            file_log = true,
+            file_log = false,
           },
           users = {
             ls = {

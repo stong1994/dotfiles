@@ -5,6 +5,7 @@ return {
   -- { "folke/flash.nvim" },
   { "gnikdroy/projections.nvim" },
   { "Exafunction/codeium.nvim" },
+  { "MeanderingProgrammer/render-markdown.nvim" },
   -- { "zbirenbaum/copilot.lua" },
   -- { "zbirenbaum/copilot-cmp" },
   -- { "CopilotC-Nvim/CopilotChat.nvim" },

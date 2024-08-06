@@ -344,4 +344,45 @@ return {
     version = "*",
     config = true,
   },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+    config = function()
+      require("nvim-web-devicons").setup()
+    end,
+  },
+  {
+    "echasnovski/mini.icons",
+    lazy = true,
+    -- opts = {
+    --   file = {
+    --     [".go-version"] = { glyph = "", hl = "MiniIconsBlue" },
+    --   },
+    --   filetype = {
+    --     gotmpl = { glyph = "󰟓", hl = "MiniIconsGrey" },
+    --   },
+    -- },
+    specs = {
+      { "nvim-tree/nvim-web-devicons", enabled = true, optional = true },
+    },
+    init = function()
+      -- require("nvim-web-devicons").setup()
+      -- local c1, c2 = require("nvim-web-devicons").get_icon_color("abc.go", "go")
+      -- vim.notify(vim.inspect(c1))
+      -- vim.notify(vim.inspect(c2))
+      -- require("nvim-web-devicons").setup()
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  },
 }

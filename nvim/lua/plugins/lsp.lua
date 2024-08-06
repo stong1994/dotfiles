@@ -46,15 +46,32 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = true,
+    opts = function(_, opts)
+      table.insert(opts.servers.vtsls.filetypes, "vue")
+      LazyVim.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
+        {
+          name = "@vue/typescript-plugin",
+          location = LazyVim.get_pkg_path("vue-language-server", "/node_modules/@vue/language-server"),
+          languages = { "vue" },
+          configNamespace = "typescript",
+          enableForWorkspaceTypeScriptVersions = true,
+        },
+      })
+
+      opts.capabilities.workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      }
+      opts.servers.volar = {
+        init_options = {
+          vue = {
+            hybridMode = true,
           },
         },
-      },
-    },
+        vtsls = {},
+      }
+    end,
     config = function()
       -- require("lspconfig").dartls.setup({
       --   cmd = { "dart", "language-server", "--protocol=lsp" },
@@ -224,7 +241,7 @@ return {
           "jsonls",
           "html",
           "elixirls",
-          -- "tailwindcss",
+          "tailwindcss",
           "tflint",
           "pylsp",
           "dockerls",
@@ -233,6 +250,7 @@ return {
           "solargraph",
           "golangci_lint_ls",
           "gopls",
+          "vuels",
           -- "cucumber_language_server",
         },
         handlers = {
@@ -421,7 +439,7 @@ return {
           quiet = false, -- not recommended to change
           lsp_format = "fallback", -- not recommended to change
         },
-        ---@type table<string, conform.FormatterUnit[]>
+        -- -@type table<string, conform.FormatterUnit[]>
         formatters_by_ft = {
           lua = { "stylua" },
           fish = { "fish_indent" },
@@ -430,6 +448,7 @@ return {
           -- Use a sub-list to run only the first available formatter
           javascript = { { "prettierd", "prettier" } },
           -- You can use a function here to determine the formatters dynamically
+          -- python = { "ruff" },
           python = function(bufnr)
             if require("conform").get_formatter_info("ruff_format", bufnr).available then
               return { "ruff_format" }

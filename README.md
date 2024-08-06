@@ -17,9 +17,20 @@ Fish is a interactive shell, you can find anything about it in the [document](ht
 
 ### Shortcut
 
+Search Directory | Ctrl+Alt+F (F for file) | --directory
+Search Git Log | Ctrl+Alt+L (L for log) | --git_log
+Search Git Status | Ctrl+Alt+S (S for status) | --git_status
+Search History | Ctrl+R (R for reverse) | --history
+Search Processes | Ctrl+Alt+P (P for process) | --processes
+Search Variables | Ctrl+V (V for variable) | --variables
+
 | Shortcut    | Description                                                | Implementation              |
 | ----------- | ---------------------------------------------------------- | --------------------------- |
-| ctrl-r      | Search command history                                     | peco                        |
+| ctrl-r      | Search command history                                     | fzf.fish                    |
+| ctrl-v      | Search variables                                           | fzf.fish                    |
+| ctrl-alt-p  | Search process                                             | fzf.fish                    |
+| ctrl-alt-l  | Search git log                                             | fzf.fish                    |
+| ctrl-alt-s  | Search git status                                          | fzf.fish                    |
 | ctrl-f      | Search the configured directories                          | fzf                         |
 | z {keyword} | Jump to the last directory which name contains the keyword | z for fish                  |
 | ctrl-l      | Forward a char like vim in command line                    | fish_user_key_bindings.fish |
@@ -69,6 +80,7 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | ctrl-h   | show signature info in model i | lsp            |
 | vca      | code action                    | lsp            |
 | vrn      | rename symbol                  | lsp            |
+| ctrl-p   | completion with lsp            | lsp-cmp        |
 
 ### editor
 
@@ -80,7 +92,7 @@ recommend color scheme: [folke/tokyonight.nvim](https://github.com/folke/tokyoni
 | g,           | go to newer position in change list                       | :h jumplist               |
 | J            | a keymap to 10j                                           |                           |
 | K            | a keymap to 10k                                           |                           |
-| ctrl-p       | paste to next line                                        |                           |
+| np           | paste to next line                                        |                           |
 | ctrl-a       | copy the whole content of the file                        |                           |
 | ctrl-s       | save the file                                             |                           |
 | +            | expand the visual selection                               | terryma/vim-expand-region |

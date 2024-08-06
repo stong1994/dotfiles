@@ -87,6 +87,7 @@ return {
         "rust",
         "http",
         "dart",
+        "vue",
       },
       -- something copied from https://github.com/ray-x/go.nvim?tab=readme-ov-file#text-object
       incremental_selection = {

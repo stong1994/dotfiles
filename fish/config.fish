@@ -24,6 +24,8 @@ set -gx GOBIN "$HOME/go/bin/"
 set -gx LS_COLORS "$(vivid generate snazzy)" # colorized output of `tree`,`fd`..
 set -gx LANG "en_US.UTF-8"
 set -gx NO_PROXY 127.0.0.1,localhost
+set -gx ANDROID_HOME "$HOME/Library/Android/sdk"
+
 fish_add_path "/Applications/kitty.app/Contents/MacOS/"
 fish_add_path "$HOME/.local/share/bob/nvim-bin"
 fish_add_path $GOBIN
