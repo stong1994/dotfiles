@@ -2,6 +2,32 @@
 
 # Stong's dotfiles
 
+## AeroSpace
+
+AeroSpace is an i3-like tiling window manager for macOS
+
+### Shortcut
+
+| Shortcut              | Description                                                |
+| --------------------- | ---------------------------------------------------------- |
+| alt-slash             | change layout of the focused window with tiles layout      |
+| alt-comma             | change layout of the focused window with accordion layout  |
+| alt-h/j/k/l           | focus left/down/up/right                                   |
+| alt-shift-h/j/k/l     | move left/down/up/right                                    |
+| alt-shift-minus/equal | resize window smaller or larger                            |
+| alt-1/2/3/...         | move workspace                                             |
+| alt-shift-1/2/3/...   | move node to workspace                                     |
+| alt-shift-f           | window fullscreen                                          |
+| alt-shift-g           | window macos-native-fullscreen                             |
+| alt-shift-w           | window close                                               |
+| alt-shift-b           | window focus-back-and-forth                                |
+| alt-shift-m           | window macos-native-minimize                               |
+| alt-tab               | workspace-back-and-forth                                   |
+| alt-shift-tab         | move-workspace-to-monitor                                  |
+| alt-shift-semicolon   | mode service                                               |
+| esc                   | reload config , under service mode                         |
+| alt-shift-h/j/k/l     | join with window to left/down/up/right, under service mode |
+
 ## Fish
 
 Fish is a interactive shell, you can find anything about it in the [document](https://fishshell.com/docs/current/index.html).
@@ -13,16 +39,8 @@ Fish is a interactive shell, you can find anything about it in the [document](ht
 - [peco](https://github.com/peco/peco) - Enhance search, eg. command history, project name
 - [eza](https://github.com/eza-community/eza) - A replacement for ls.
 - [startship](https://starship.rs/) - color shceme.
--
 
 ### Shortcut
-
-Search Directory | Ctrl+Alt+F (F for file) | --directory
-Search Git Log | Ctrl+Alt+L (L for log) | --git_log
-Search Git Status | Ctrl+Alt+S (S for status) | --git_status
-Search History | Ctrl+R (R for reverse) | --history
-Search Processes | Ctrl+Alt+P (P for process) | --processes
-Search Variables | Ctrl+V (V for variable) | --variables
 
 | Shortcut    | Description                                                | Implementation              |
 | ----------- | ---------------------------------------------------------- | --------------------------- |

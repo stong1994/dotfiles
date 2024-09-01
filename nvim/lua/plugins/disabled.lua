@@ -6,8 +6,10 @@ return {
   { "gnikdroy/projections.nvim" },
   { "Exafunction/codeium.nvim" },
   { "MeanderingProgrammer/render-markdown.nvim" },
-  -- { "zbirenbaum/copilot.lua" },
-  -- { "zbirenbaum/copilot-cmp" },
-  -- { "CopilotC-Nvim/CopilotChat.nvim" },
-  -- { "VonHeikemen/lsp-zero.nvim" },
+
+  -- { "zbirenbaum/copilot.lua", enabled = false },
+  -- { "zbirenbaum/copilot-cmp", enabled = false },
+  -- { "CopilotC-Nvim/CopilotChat.nvim", enabled = false },
+
+  -- { "VonHeikemen/lsp-zero.nvim", enabled = false },
 }

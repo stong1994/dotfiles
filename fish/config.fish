@@ -9,7 +9,6 @@ alias vim nvim
 alias v nvim
 alias v. "nvim ."
 alias cat='bat --paging=never'
-alias fzfp "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 alias gitdiff 'git diff --name-only --diff-filter=d | xargs bat --diff'
 alias ghcs "gh copilot suggest -t shell"
 alias ghcg "gh copilot suggest -t git"
@@ -45,3 +44,6 @@ function fish_title
     set -q argv[1]; or set argv fish
     echo (basename (prompt_pwd)): $argv
 end
+
+# alias fzfp "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+fzf --fish | source
