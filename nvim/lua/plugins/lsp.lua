@@ -212,7 +212,14 @@ return {
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
       -- See the full "keymap" documentation for information on defining your own keymap.
-      keymap = { preset = "default" },
+      keymap = {
+        preset = "enter",
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-n>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "hide", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
+      },
 
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -276,7 +283,7 @@ return {
       require("mason-lspconfig").setup({
         automatic_installation = false,
         ensure_installed = {
-          "tl_ls",
+          "ts_ls",
           "eslint",
           -- "rust_analyzer", can't set rust_analyzer in mason-lspconfig as "mrcjkb/rustaceanvim" has did it
           -- "kotlin_language_server",
