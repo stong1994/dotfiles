@@ -38,14 +38,15 @@ end
 return {
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
-  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   keys = function()
+  --     return {}
+  --   end,
+  -- },
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
     opts = function(_, opts)
       table.insert(opts.servers.vtsls.filetypes, "vue")
       LazyVim.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
@@ -72,121 +73,164 @@ return {
         vtsls = {},
       }
     end,
-    config = function()
-      -- require("lspconfig").dartls.setup({
-      --   cmd = { "dart", "language-server", "--protocol=lsp" },
-      -- })
+    config = function(_, opts)
+      local lspconfig = require("lspconfig")
+      for server, config in pairs(opts.servers) do
+        -- passing config.capabilities to blink.cmp merges with the capabilities in your
+        -- `opts[server].capabilities, if you've defined it
+        -- config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        -- lspconfig[server].setup(config or {})
+      end
     end,
   },
   -- then: setup supertab in cmp
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   dependencies = {
+  --     "hrsh7th/cmp-emoji",
+  --     "onsails/lspkind.nvim",
+  --   },
+  --   config = function()
+  --     local cmp = require("cmp")
+  --     local cmp_action = require("lsp-zero").cmp_action()
+  --     local cmp_select = { behavior = cmp.SelectBehavior.Select }
+  --     local lspkind = require("lspkind")
+  --     local has_words = require("stong.utils.hasword")
+  --
+  --     cmp.setup({
+  --       snippet = {
+  --         -- REQUIRED - you must specify a snippet engine
+  --         expand = function(args)
+  --           -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+  --           require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+  --           -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+  --           -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+  --           -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+  --         end,
+  --       },
+  --       window = {
+  --         completion = cmp.config.window.bordered(),
+  --         documentation = cmp.config.window.bordered(),
+  --         cmp.scroll_docs,
+  --       },
+  --       mapping = cmp.mapping.preset.insert({
+  --         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+  --         ["<C-f>"] = cmp.mapping.scroll_docs(4),
+  --         ["<C-Space>"] = cmp.mapping.complete(),
+  --         ["<C-e>"] = cmp.mapping.abort(),
+  --         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  --         ["<C-u>"] = cmp.mapping.select_prev_item(cmp_select),
+  --         ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+  --         -- ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+  --         -- ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+  --         -- ["<Tab>"] = cmp_action.luasnip_supertab(),
+  --         ["<Tab>"] = vim.schedule_wrap(function(fallback)
+  --           if cmp.visible() and has_words.before() then
+  --             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+  --           else
+  --             fallback()
+  --           end
+  --         end),
+  --         ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+  --       }),
+  --       sources = cmp.config.sources({
+  --         -- { name = "codeium" },
+  --         -- Copilot Source
+  --         { name = "copilot", group_index = 2 },
+  --         { name = "nvim_lsp" },
+  --         -- { name = "vsnip" }, -- For vsnip users.
+  --         { name = "luasnip" }, -- For luasnip users.
+  --         -- { name = 'ultisnips' }, -- For ultisnips users.
+  --         -- { name = 'snippy' }, -- For snippy users.
+  --         { name = "buffer", keyword_length = 3 },
+  --         { name = "path" },
+  --         -- }, {
+  --         --   { name = "buffer" },
+  --       }),
+  --       formatting = {
+  --         format = lspkind.cmp_format({
+  --           mode = "symbol",
+  --           max_width = 50,
+  --           ellipsis_char = "...",
+  --           symbol_map = {
+  --             Copilot = "",
+  --             Codeium = "󰘦 ",
+  --           },
+  --         }),
+  --       },
+  --     })
+  --
+  --     -- Set configuration for specific filetype.
+  --     cmp.setup.filetype("gitcommit", {
+  --       sources = cmp.config.sources({
+  --         { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+  --       }, {
+  --         { name = "buffer" },
+  --       }),
+  --     })
+  --
+  --     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  --     -- cmp.setup.cmdline({ "/", "?" }, {
+  --     --   mapping = cmp.mapping.preset.cmdline(),
+  --     --   sources = {
+  --     --     { name = "buffer" },
+  --     --   },
+  --     -- })
+  --     --
+  --     -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  --     -- cmp.setup.cmdline(":", {
+  --     --   mapping = cmp.mapping.preset.cmdline({
+  --     --     ["<CR>"] = {
+  --     --       c = cmp.mapping.confirm({ select = false }),
+  --     --     },
+  --     --   }),
+  --     --   sources = cmp.config.sources({
+  --     --     { name = "path" },
+  --     --   }, {
+  --     --     { name = "cmdline" },
+  --     --   }),
+  --     --   matching = { disallow_symbol_nonprefix_matching = false },
+  --     -- })
+  --   end,
+  -- },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-      "onsails/lspkind.nvim",
+    "saghen/blink.cmp",
+    -- optional: provides snippets for the snippet source
+    dependencies = "rafamadriz/friendly-snippets",
+
+    -- use a release tag to download pre-built binaries
+    version = "*",
+    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    -- build = 'cargo build --release',
+    -- If you use nix, you can build from source using latest nightly rust with:
+    -- build = 'nix run .#build-plugin',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      -- 'default' for mappings similar to built-in completion
+      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+      -- See the full "keymap" documentation for information on defining your own keymap.
+      keymap = { preset = "default" },
+
+      appearance = {
+        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+        -- Useful for when your theme doesn't support blink.cmp
+        -- Will be removed in a future release
+        use_nvim_cmp_as_default = true,
+        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = "mono",
+      },
+
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
     },
-    config = function()
-      local cmp = require("cmp")
-      local cmp_action = require("lsp-zero").cmp_action()
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
-      local lspkind = require("lspkind")
-      local has_words = require("stong.utils.hasword")
-
-      cmp.setup({
-        snippet = {
-          -- REQUIRED - you must specify a snippet engine
-          expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-          cmp.scroll_docs,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          ["<C-u>"] = cmp.mapping.select_prev_item(cmp_select),
-          ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-          -- ["<C-f>"] = cmp_action.luasnip_jump_forward(),
-          -- ["<C-b>"] = cmp_action.luasnip_jump_backward(),
-          -- ["<Tab>"] = cmp_action.luasnip_supertab(),
-          ["<Tab>"] = vim.schedule_wrap(function(fallback)
-            if cmp.visible() and has_words.before() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-              fallback()
-            end
-          end),
-          ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
-        }),
-        sources = cmp.config.sources({
-          -- { name = "codeium" },
-          -- Copilot Source
-          { name = "copilot", group_index = 2 },
-          { name = "nvim_lsp" },
-          -- { name = "vsnip" }, -- For vsnip users.
-          { name = "luasnip" }, -- For luasnip users.
-          -- { name = 'ultisnips' }, -- For ultisnips users.
-          -- { name = 'snippy' }, -- For snippy users.
-          { name = "buffer", keyword_length = 3 },
-          { name = "path" },
-          -- }, {
-          --   { name = "buffer" },
-        }),
-        formatting = {
-          format = lspkind.cmp_format({
-            mode = "symbol",
-            max_width = 50,
-            ellipsis_char = "...",
-            symbol_map = {
-              Copilot = "",
-              Codeium = "󰘦 ",
-            },
-          }),
-        },
-      })
-
-      -- Set configuration for specific filetype.
-      cmp.setup.filetype("gitcommit", {
-        sources = cmp.config.sources({
-          { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-        }, {
-          { name = "buffer" },
-        }),
-      })
-
-      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline({
-          ["<CR>"] = {
-            c = cmp.mapping.confirm({ select = false }),
-          },
-        }),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
-        matching = { disallow_symbol_nonprefix_matching = false },
-      })
-    end,
+    opts_extend = { "sources.default" },
   },
   {
     "VonHeikemen/lsp-zero.nvim",
@@ -203,15 +247,15 @@ return {
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
       -- Autocompletion
-      { "hrsh7th/nvim-cmp" }, -- Required
-      { "hrsh7th/cmp-nvim-lsp" }, -- Required
-      { "L3MON4D3/LuaSnip" }, -- Required
+      -- { "hrshth/nvim-cmp" }, -- Required
+      -- { "hrsh7th/cmp-nvim-lsp" }, -- Required
+      -- { "L3MON4D3/LuaSnip" }, - Required
       { "rafamadriz/friendly-snippets" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-cmdline" },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "telescope.nvim" },
+      -- { "hrsh7th/cmp-buffer" },
+      -- { "hrsh7th/cmp-path" },
+      -- { "hrsh7th/cmp-cmdline" },
+      -- { "saadparwaiz1/cmp_luasnip" },
+      -- { "telescope.nvim" },
     },
 
     init = function()
@@ -232,7 +276,7 @@ return {
       require("mason-lspconfig").setup({
         automatic_installation = false,
         ensure_installed = {
-          "tsserver",
+          "tl_ls",
           "eslint",
           -- "rust_analyzer", can't set rust_analyzer in mason-lspconfig as "mrcjkb/rustaceanvim" has did it
           -- "kotlin_language_server",

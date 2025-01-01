@@ -1,6 +1,6 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.copilot",
+    "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.lang.go",
     "lazyvim.plugins.extras.lang.haskell",
@@ -9,8 +9,8 @@
     "lazyvim.plugins.extras.lang.yaml"
   ],
   "news": {
-    "NEWS.md": "6520",
-    "doc/news.txt": "6438"
+    "NEWS.md": "10960",
+    "doc/news.txt": "17704"
   },
-  "version": 6
+  "version": 7
 }

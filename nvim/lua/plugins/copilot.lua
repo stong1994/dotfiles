@@ -12,22 +12,22 @@ return {
       },
     },
   },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = "copilot.lua",
-    opts = {},
-    config = function(_, opts)
-      local copilot_cmp = require("copilot_cmp")
-      copilot_cmp.setup(opts)
-      -- attach cmp source whenever copilot attaches
-      -- fixes lazy-loading issues with the copilot cmp source
-      LazyVim.lsp.on_attach(function(client)
-        if client.name == "copilot" then
-          copilot_cmp._on_insert_enter({})
-        end
-      end)
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   dependencies = "copilot.lua",
+  --   opts = {},
+  --   config = function(_, opts)
+  --     local copilot_cmp = require("copilot_cmp")
+  --     copilot_cmp.setup(opts)
+  --     -- attach cmp source whenever copilot attaches
+  --     -- fixes lazy-loading issues with the copilot cmp source
+  --     LazyVim.lsp.on_attach(function(client)
+  --       if client.name == "copilot" then
+  --         copilot_cmp._on_insert_enter({})
+  --       end
+  --     end)
+  --   end,
+  -- },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
@@ -215,18 +215,18 @@ return {
       },
     },
   },
-  {
-    "Exafunction/codeium.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("codeium").setup({
-        detect_proxy = true,
-        enable_chat = true,
-      })
-    end,
-  },
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup({
+  --       detect_proxy = true,
+  --       enable_chat = true,
+  --     })
+  --   end,
+  -- },
 }

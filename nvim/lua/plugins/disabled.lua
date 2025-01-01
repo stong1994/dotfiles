@@ -4,7 +4,7 @@ return {
   -- { "ray-x/go.nvim", enable = false },
   -- { "folke/flash.nvim" },
   { "gnikdroy/projections.nvim" },
-  { "Exafunction/codeium.nvim" },
+  -- { "Exafunction/codeium.nvim" },
   { "MeanderingProgrammer/render-markdown.nvim" },
 
   -- { "zbirenbaum/copilot.lua", enabled = false },
